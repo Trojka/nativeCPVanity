@@ -18,7 +18,6 @@
 		0B7A9F9418A01B2900C505BB /* SDECPUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A9F9318A01B2900C505BB /* SDECPUserProfileViewController.m */; };
 		0B7A9F9718A020F800C505BB /* SDECPUserArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A9F9618A020F800C505BB /* SDECPUserArticlesViewController.m */; };
 		0B7A9F9A18A021D500C505BB /* SDECPUserReputationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A9F9918A021D500C505BB /* SDECPUserReputationViewController.m */; };
-		0B7A9FA218A42C0D00C505BB /* cplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A9FA118A42C0D00C505BB /* cplogo.png */; };
 		0B7A9FA818A6441500C505BB /* SDECPPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A9FA718A6441500C505BB /* SDECPPageViewController.m */; };
 		0BB7CF2A18D237A8007131B0 /* articlesalpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7CF2718D237A8007131B0 /* articlesalpha.png */; };
 		0BB7CF2B18D237A8007131B0 /* communityalpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB7CF2818D237A8007131B0 /* communityalpha.png */; };
@@ -38,6 +37,9 @@
 		0BC0EC4318941EDD004C731E /* SDECodeProjectUrlScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC4218941EDD004C731E /* SDECodeProjectUrlScheme.m */; };
 		0BC0EC46189421D6004C731E /* SDECodeProjectMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */; };
 		0BC0EC4918999DDB004C731E /* SDECodeProjectArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC4818999DDB004C731E /* SDECodeProjectArticle.m */; };
+		0BEDC13D19FAE05100DCCBD2 /* SDECPUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEDC13C19FAE05100DCCBD2 /* SDECPUserListViewController.m */; };
+		0BEDC14119FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEDC14019FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.m */; };
+		0BEDC14319FAEBC300DCCBD2 /* cplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEDC14219FAEBC300DCCBD2 /* cplogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +74,6 @@
 		0B7A9F9618A020F800C505BB /* SDECPUserArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECPUserArticlesViewController.m; sourceTree = "<group>"; };
 		0B7A9F9818A021D500C505BB /* SDECPUserReputationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECPUserReputationViewController.h; sourceTree = "<group>"; };
 		0B7A9F9918A021D500C505BB /* SDECPUserReputationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECPUserReputationViewController.m; sourceTree = "<group>"; };
-		0B7A9FA118A42C0D00C505BB /* cplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cplogo.png; path = ../../../../cplogo.png; sourceTree = "<group>"; };
 		0B7A9FA618A6441500C505BB /* SDECPPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECPPageViewController.h; sourceTree = "<group>"; };
 		0B7A9FA718A6441500C505BB /* SDECPPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECPPageViewController.m; sourceTree = "<group>"; };
 		0BB7CF2718D237A8007131B0 /* articlesalpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = articlesalpha.png; sourceTree = "<group>"; };
@@ -101,6 +102,11 @@
 		0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectMember.m; sourceTree = "<group>"; };
 		0BC0EC4718999DDB004C731E /* SDECodeProjectArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectArticle.h; sourceTree = "<group>"; };
 		0BC0EC4818999DDB004C731E /* SDECodeProjectArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectArticle.m; sourceTree = "<group>"; };
+		0BEDC13B19FAE05100DCCBD2 /* SDECPUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECPUserListViewController.h; sourceTree = "<group>"; };
+		0BEDC13C19FAE05100DCCBD2 /* SDECPUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECPUserListViewController.m; sourceTree = "<group>"; };
+		0BEDC13F19FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectMemberDatabase.h; sourceTree = "<group>"; };
+		0BEDC14019FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectMemberDatabase.m; sourceTree = "<group>"; };
+		0BEDC14219FAEBC300DCCBD2 /* cplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cplogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +136,10 @@
 		0B7A9F9E18A421BB00C505BB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0BEDC14219FAEBC300DCCBD2 /* cplogo.png */,
 				0BB7CF2718D237A8007131B0 /* articlesalpha.png */,
 				0BB7CF2818D237A8007131B0 /* communityalpha.png */,
 				0BB7CF2918D237A8007131B0 /* memberalpha.png */,
-				0B7A9FA118A42C0D00C505BB /* cplogo.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -170,6 +176,7 @@
 		0BC0EC081893C8D6004C731E /* iCPVanity */ = {
 			isa = PBXGroup;
 			children = (
+				0BEDC13E19FAE3AB00DCCBD2 /* Data */,
 				0BC0EC3D189413DE004C731E /* Model */,
 				0BC0EC111893C8D6004C731E /* SDEAppDelegate.h */,
 				0BC0EC121893C8D6004C731E /* SDEAppDelegate.m */,
@@ -184,6 +191,8 @@
 				0BC0EC3B1893CD39004C731E /* SDECPForumsViewController.m */,
 				0B4DB54F18B14E800096A6BE /* SDECPForumCategoryViewController.h */,
 				0B4DB55018B14E800096A6BE /* SDECPForumCategoryViewController.m */,
+				0BEDC13B19FAE05100DCCBD2 /* SDECPUserListViewController.h */,
+				0BEDC13C19FAE05100DCCBD2 /* SDECPUserListViewController.m */,
 				0B7A9F9218A01B2900C505BB /* SDECPUserProfileViewController.h */,
 				0B7A9F9318A01B2900C505BB /* SDECPUserProfileViewController.m */,
 				0B7A9F9518A020F800C505BB /* SDECPUserArticlesViewController.h */,
@@ -229,6 +238,15 @@
 				0B38E67218A81EB400F2AC63 /* SDERSSItem.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		0BEDC13E19FAE3AB00DCCBD2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0BEDC13F19FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.h */,
+				0BEDC14019FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB7CF2B18D237A8007131B0 /* communityalpha.png in Resources */,
-				0B7A9FA218A42C0D00C505BB /* cplogo.png in Resources */,
+				0BEDC14319FAEBC300DCCBD2 /* cplogo.png in Resources */,
 				0BB7CF2A18D237A8007131B0 /* articlesalpha.png in Resources */,
 				0B38E66518A6CB0400F2AC63 /* Images.xcassets in Resources */,
 				0BB7CF2C18D237A8007131B0 /* memberalpha.png in Resources */,
@@ -332,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BEDC14119FAE45300DCCBD2 /* SDECodeProjectMemberDatabase.m in Sources */,
 				0B7A9F9418A01B2900C505BB /* SDECPUserProfileViewController.m in Sources */,
 				0B4DB54818AEB45E0096A6BE /* SDECodeProjectFeed.m in Sources */,
 				0BC0EC4318941EDD004C731E /* SDECodeProjectUrlScheme.m in Sources */,
@@ -349,6 +368,7 @@
 				0BC0EC46189421D6004C731E /* SDECodeProjectMember.m in Sources */,
 				0BC0EC131893C8D6004C731E /* SDEAppDelegate.m in Sources */,
 				0BC0EC1C1893C8D6004C731E /* SDECPArticleViewController.m in Sources */,
+				0BEDC13D19FAE05100DCCBD2 /* SDECPUserListViewController.m in Sources */,
 				0BC0EC3C1893CD39004C731E /* SDECPForumsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

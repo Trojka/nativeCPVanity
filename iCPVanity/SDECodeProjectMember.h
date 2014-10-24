@@ -24,7 +24,7 @@
 
 @property (nonatomic, readonly) int MemberId;
 
-@property (nonatomic, readonly) NSString* MemberName;
+@property (nonatomic, readwrite) NSString* MemberName;
 
 @property (nonatomic, readonly) NSString* ImageUrl;
 
