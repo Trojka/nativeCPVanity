@@ -14,13 +14,13 @@
 - (NSArray*)getMemberList {
     NSMutableArray* memberList = [[NSMutableArray alloc] init];
     
-    SDECodeProjectMember* member1 = [[SDECodeProjectMember alloc] init];
-    member1.MemberName = @"Ikke";
-    [memberList addObject:member1];
-    
-    SDECodeProjectMember* member2 = [[SDECodeProjectMember alloc] init];
-    member2.MemberName = @"Dienandern";
-    [memberList addObject:member2];
+//    SDECodeProjectMember* member1 = [[SDECodeProjectMember alloc] init];
+//    member1.MemberName = @"Ikke";
+//    [memberList addObject:member1];
+//
+//    SDECodeProjectMember* member2 = [[SDECodeProjectMember alloc] init];
+//    member2.MemberName = @"Dienandern";
+//    [memberList addObject:member2];
     
     NSArray* result = [[NSArray alloc] initWithArray:memberList];
     

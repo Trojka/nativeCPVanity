@@ -9,12 +9,14 @@
 #import "SDECPUserListViewController.h"
 #import "SDECodeProjectMemberDatabase.h"
 #import "SDECodeProjectMember.h"
+#import "SDECPUserProfileViewController.h"
 
 @interface SDECPUserListViewController ()
 {
-
     NSArray* memberList;
-
+    NSArray* searchResults;
+    
+    NSString* filterString;
 }
 @end
 
@@ -61,15 +63,61 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return memberList.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSInteger extraEntry = 0;
+        
+        NSScanner *scanner = [NSScanner scannerWithString:filterString];
+        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
+        if(isNumeric) {
+            // add one for the add member entry
+            extraEntry = 1;
+        }
+        
+        return searchResults.count + extraEntry;
+    } else {
+        return memberList.count;
+    }
+}
+
+- (GLfloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView && indexPath.row == 0) {
+        return 35;
+    }
+    
+    // changing this will also require changement in the storyboard and vice versa
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"MemberCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *MemberCellIdentifier = @"MemberCell";
+    static NSString *AddMemberCellIdentifier = @"AddMemberCell";
+    UITableViewCell *cell = nil;
     
-    SDECodeProjectMember* member = [memberList objectAtIndex:indexPath.row];
+    SDECodeProjectMember* member = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSScanner *scanner = [NSScanner scannerWithString:filterString];
+        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
+        
+        if(indexPath.row == 0 && isNumeric) {
+            static NSInteger textTag = 200;
+            
+            cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:AddMemberCellIdentifier];
+            
+            ((UILabel*)[cell viewWithTag:textTag]).text = [NSString stringWithFormat:@"Load member %@", self->filterString];
+
+            return cell;
+        }
+        else {
+            member = [searchResults objectAtIndex:indexPath.row];
+            
+            cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:MemberCellIdentifier];
+        }
+    } else {
+        cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:MemberCellIdentifier];
+        member = [memberList objectAtIndex:indexPath.row];
+    }
     
     static NSInteger titleTag = 100;
     
@@ -117,16 +165,46 @@
 }
 */
 
-/*
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSMutableArray* filteredMemberList = [[NSMutableArray alloc] init];
+    filterString = searchString;
+    
+//    SDECodeProjectMember* member1 = [[SDECodeProjectMember alloc] init];
+//    member1.MemberName = @"Ikke gefilterd";
+//    [filteredMemberList addObject:member1];
+    
+    if(memberList.count != 0) {
+        
+    }
+
+    searchResults = [[NSArray alloc] initWithArray:filteredMemberList];
+    
+    return YES;
+}
+
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ShowMember"]) {
+        self.searchDisplayController.searchBar.text = @"";
+        [self.searchDisplayController.searchBar resignFirstResponder];
+        self.searchDisplayController.active = FALSE;
+        
+    }
+    else if ([segue.identifier isEqualToString:@"LoadMember"]){
+        self.searchDisplayController.searchBar.text = @"";
+        [self.searchDisplayController.searchBar resignFirstResponder];
+        self.searchDisplayController.active = FALSE;
+        
+    }
+    
+    ((SDECPUserProfileViewController*)segue.destinationViewController).CodeprojectMemberId = [filterString integerValue];
+
 }
 
- */
 
 @end

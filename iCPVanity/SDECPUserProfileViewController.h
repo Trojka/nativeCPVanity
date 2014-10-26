@@ -12,10 +12,13 @@
 
 @interface SDECPUserProfileViewController : UIViewController<SDECodeProjectMemberDelegate>
 {
-    SDECodeProjectMember *codeprojectMember;
 }
 
 - (IBAction) fillWithMember;
+
+@property (nonatomic) NSInteger CodeprojectMemberId;
+
+@property (strong, nonatomic) SDECodeProjectMember *CodeprojectMember;
 
 @property (strong, nonatomic) IBOutlet UITextField *MemberIdTextField;
 

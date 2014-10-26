@@ -32,6 +32,8 @@ UIActivityIndicatorView *activityView;
     activityView.color = [UIColor darkGrayColor];
     
     [self.view addSubview:activityView];
+    
+    [self fillWithMemberWithId:self.CodeprojectMemberId];
 
 }
 
@@ -40,7 +42,12 @@ UIActivityIndicatorView *activityView;
     [_MemberIdTextField resignFirstResponder];
     NSString* memberIdAsString = _MemberIdTextField.text;
     NSInteger memberId = [memberIdAsString integerValue];
-    codeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId delegate:self];
+
+    [self fillWithMemberWithId:memberId];
+}
+
+- (void) fillWithMemberWithId:(NSInteger)memberId {
+    self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId delegate:self];
     
     [activityView startAnimating];
     
@@ -50,16 +57,16 @@ UIActivityIndicatorView *activityView;
     
     [activityView stopAnimating];
     
-    self.NameLabel.text = codeprojectMember.MemberName;
-    self.ReputationLabel.text = codeprojectMember.Reputation;
+    self.NameLabel.text = self.CodeprojectMember.MemberName;
+    self.ReputationLabel.text = self.CodeprojectMember.Reputation;
     
-    self.AvgArticleRatingLabel.text = [NSString stringWithFormat:@"Average articles rating: %@", codeprojectMember.AvgArticleRating];
-    self.ArticleCountLabel.text = [NSString stringWithFormat:@"%d articles available", codeprojectMember.ArticleList.count];
+    self.AvgArticleRatingLabel.text = [NSString stringWithFormat:@"Average articles rating: %@", self.CodeprojectMember.AvgArticleRating];
+    self.ArticleCountLabel.text = [NSString stringWithFormat:@"%d articles available", self.CodeprojectMember.ArticleList.count];
     
-    self.AvgBlogRatingLabel.text = [NSString stringWithFormat:@"Average blog rating: %@", codeprojectMember.AvgBlogRating];
-    self.BlogCountLabel.text = [NSString stringWithFormat:@"%d blogposts available", codeprojectMember.BlogList.count];
+    self.AvgBlogRatingLabel.text = [NSString stringWithFormat:@"Average blog rating: %@", self.CodeprojectMember.AvgBlogRating];
+    self.BlogCountLabel.text = [NSString stringWithFormat:@"%d blogposts available", self.CodeprojectMember.BlogList.count];
     
-    NSString* imagUrl = [codeprojectMember.ImageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* imagUrl = [self.CodeprojectMember.ImageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagUrl]]];
     [self.MemberImage setImage:image];
     
@@ -81,7 +88,7 @@ UIActivityIndicatorView *activityView;
     if ([segue.identifier isEqualToString:@"MemberArticlesSegue"]) {
         
         SDECPUserArticlesViewController *memberArticlesViewController = (SDECPUserArticlesViewController*)segue.destinationViewController;
-        memberArticlesViewController.CodeprojectMember = codeprojectMember;
+        memberArticlesViewController.CodeprojectMember = self.CodeprojectMember;
         
     }
 }

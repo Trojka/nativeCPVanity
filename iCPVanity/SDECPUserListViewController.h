@@ -10,4 +10,6 @@
 
 @interface SDECPUserListViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *MemberListTableView;
+
 @end
