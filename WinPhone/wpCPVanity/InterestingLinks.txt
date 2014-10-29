@@ -1,0 +1,2 @@
+﻿http://stackoverflow.com/questions/16032940/windowsphone-equivalent-of-uitabcontroller-with-uinaviagtioncontroller-per-each
+http://blog.mugunthkumar.com/articles/porting-iphoneios-apps-to-windows-phone/
