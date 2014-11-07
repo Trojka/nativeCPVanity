@@ -46,6 +46,10 @@ UIActivityIndicatorView *activityView;
     [self fillWithMemberWithId:memberId];
 }
 
+- (IBAction) saveMember {
+
+}
+
 - (void) fillWithMemberWithId:(NSInteger)memberId {
     self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId delegate:self];
     

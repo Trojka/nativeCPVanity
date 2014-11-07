@@ -7,20 +7,30 @@
 //
 
 #import "SDECPUserListViewController.h"
-#import "SDECodeProjectMemberDatabase.h"
 #import "SDECodeProjectMember.h"
 #import "SDECPUserProfileViewController.h"
 
 @interface SDECPUserListViewController ()
 {
-    NSArray* memberList;
     NSArray* searchResults;
     
     NSString* filterString;
 }
+
+@property (strong) NSMutableArray* memberList;
+
 @end
 
 @implementation SDECPUserListViewController
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,15 +45,24 @@
 {
     [super viewDidLoad];
     
-    SDECodeProjectMemberDatabase* memberDatabase = [[SDECodeProjectMemberDatabase alloc] init];
-    
-    memberList = [memberDatabase getMemberList];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Fetch the devices from persistent data store
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CodeProjectMember"];
+    self.memberList = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,7 +94,7 @@
         
         return searchResults.count + extraEntry;
     } else {
-        return memberList.count;
+        return self.memberList.count;
     }
 }
 
@@ -116,7 +135,7 @@
         }
     } else {
         cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:MemberCellIdentifier];
-        member = [memberList objectAtIndex:indexPath.row];
+        member = [self.memberList objectAtIndex:indexPath.row];
     }
     
     static NSInteger titleTag = 100;
@@ -174,7 +193,7 @@
 //    member1.MemberName = @"Ikke gefilterd";
 //    [filteredMemberList addObject:member1];
     
-    if(memberList.count != 0) {
+    if(self.memberList.count != 0) {
         
     }
 

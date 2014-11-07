@@ -16,6 +16,8 @@
 
 - (IBAction) fillWithMember;
 
+- (IBAction) saveMember;
+
 @property (nonatomic) NSInteger CodeprojectMemberId;
 
 @property (strong, nonatomic) SDECodeProjectMember *CodeprojectMember;
