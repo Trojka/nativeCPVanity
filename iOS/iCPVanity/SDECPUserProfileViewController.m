@@ -8,10 +8,20 @@
 
 #import "SDECPUserProfileViewController.h"
 #import "SDECPUserArticlesViewController.h"
+#import "SDECodeProjectMemberStore.h"
 
 @implementation SDECPUserProfileViewController
 
 UIActivityIndicatorView *activityView;
+
+//- (NSManagedObjectContext *)managedObjectContext {
+//    NSManagedObjectContext *context = nil;
+//    id delegate = [[UIApplication sharedApplication] delegate];
+//    if ([delegate performSelector:@selector(managedObjectContext)]) {
+//        context = [delegate managedObjectContext];
+//    }
+//    return context;
+//}
 
 - (void)viewDidLoad
 {
@@ -47,7 +57,9 @@ UIActivityIndicatorView *activityView;
 }
 
 - (IBAction) saveMember {
-
+    SDECodeProjectMemberStore* memberStore = [[SDECodeProjectMemberStore alloc] init];
+    
+    [memberStore saveMember:self.CodeprojectMember];
 }
 
 - (void) fillWithMemberWithId:(NSInteger)memberId {

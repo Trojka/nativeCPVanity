@@ -42,4 +42,6 @@
 
 - (id)initWithId:(int)memberId delegate:(id <SDECodeProjectMemberDelegate>)delegate;
 
+- (id)initWithManagedObject:(NSManagedObject*) managedObject;
+
 @end

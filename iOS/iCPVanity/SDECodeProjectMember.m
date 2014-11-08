@@ -75,6 +75,19 @@
     return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject*) managedObject
+{
+    self = [super init];
+    
+    if(self)
+    {
+        self.MemberId = [(NSNumber*)[managedObject valueForKey:@"id"] integerValue];
+        self.MemberName = [managedObject valueForKey:@"name"];
+    }
+    
+    return self;
+}
+
 
 - (void)fillMemberProfileFromProfilePage:(NSString*) page
 {

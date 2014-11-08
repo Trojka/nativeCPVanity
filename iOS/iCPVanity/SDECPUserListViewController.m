@@ -7,6 +7,7 @@
 //
 
 #import "SDECPUserListViewController.h"
+#import "SDECodeProjectMemberStore.h"
 #import "SDECodeProjectMember.h"
 #import "SDECPUserProfileViewController.h"
 
@@ -17,20 +18,12 @@
     NSString* filterString;
 }
 
-@property (strong) NSMutableArray* memberList;
+//@property (strong) NSMutableArray* memberList;
+@property (strong) NSArray* memberList;
 
 @end
 
 @implementation SDECPUserListViewController
-
-- (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -57,10 +50,13 @@
 {
     [super viewDidAppear:animated];
     
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CodeProjectMember"];
-    self.memberList = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    //// Fetch the devices from persistent data store
+    //NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CodeProjectMember"];
+    //self.memberList = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    SDECodeProjectMemberStore* memberStore = [[SDECodeProjectMemberStore alloc] init];
+    self.memberList = [memberStore getAllMembers];
     
     [self.tableView reloadData];
 }
@@ -94,7 +90,8 @@
         
         return searchResults.count + extraEntry;
     } else {
-        return self.memberList.count;
+        NSUInteger memberCount =self.memberList.count;
+        return memberCount;
     }
 }
 
@@ -115,6 +112,7 @@
     UITableViewCell *cell = nil;
     
     SDECodeProjectMember* member = nil;
+    //NSManagedObject* member;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         NSScanner *scanner = [NSScanner scannerWithString:filterString];
         BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];

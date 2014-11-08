@@ -18,6 +18,8 @@
 
 - (IBAction) saveMember;
 
+@property (strong) NSManagedObject *member;
+
 @property (nonatomic) NSInteger CodeprojectMemberId;
 
 @property (strong, nonatomic) SDECodeProjectMember *CodeprojectMember;
