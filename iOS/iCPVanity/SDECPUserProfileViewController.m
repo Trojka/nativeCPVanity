@@ -63,7 +63,10 @@ UIActivityIndicatorView *activityView;
 }
 
 - (void) fillWithMemberWithId:(NSInteger)memberId {
-    self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId delegate:self];
+    self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId];
+    
+    SDECodeProjectWeb* cpWeb = [[SDECodeProjectWeb alloc]init];
+    [cpWeb fillMember:self.CodeprojectMember delegate:self];
     
     [activityView startAnimating];
     

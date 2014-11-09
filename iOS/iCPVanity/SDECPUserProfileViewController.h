@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "SDECodeProjectMember.h"
+#import "SDECodeProjectWeb.h"
 
-@interface SDECPUserProfileViewController : UIViewController<SDECodeProjectMemberDelegate>
+@interface SDECPUserProfileViewController : UIViewController<SDECodeProjectWebDelegate>
 {
 }
 

@@ -50,11 +50,6 @@
 {
     [super viewDidAppear:animated];
     
-    //// Fetch the devices from persistent data store
-    //NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CodeProjectMember"];
-    //self.memberList = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
     SDECodeProjectMemberStore* memberStore = [[SDECodeProjectMemberStore alloc] init];
     self.memberList = [memberStore getAllMembers];
     
@@ -112,7 +107,6 @@
     UITableViewCell *cell = nil;
     
     SDECodeProjectMember* member = nil;
-    //NSManagedObject* member;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         NSScanner *scanner = [NSScanner scannerWithString:filterString];
         BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
@@ -187,10 +181,6 @@
     NSMutableArray* filteredMemberList = [[NSMutableArray alloc] init];
     filterString = searchString;
     
-//    SDECodeProjectMember* member1 = [[SDECodeProjectMember alloc] init];
-//    member1.MemberName = @"Ikke gefilterd";
-//    [filteredMemberList addObject:member1];
-    
     if(self.memberList.count != 0) {
         
     }
@@ -206,20 +196,26 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    int memberId = -1;
     if ([segue.identifier isEqualToString:@"ShowMember"]) {
+        // show the data of an existing member
         self.searchDisplayController.searchBar.text = @"";
         [self.searchDisplayController.searchBar resignFirstResponder];
         self.searchDisplayController.active = FALSE;
         
     }
     else if ([segue.identifier isEqualToString:@"LoadMember"]){
+        
+        memberId = [filterString integerValue];
+        
+        // load the data of a new member
         self.searchDisplayController.searchBar.text = @"";
         [self.searchDisplayController.searchBar resignFirstResponder];
         self.searchDisplayController.active = FALSE;
         
     }
     
-    ((SDECPUserProfileViewController*)segue.destinationViewController).CodeprojectMemberId = [filterString integerValue];
+    ((SDECPUserProfileViewController*)segue.destinationViewController).CodeprojectMemberId = memberId;
 
 }
 

@@ -1,5 +1,5 @@
 //
-//  SDECodeProjectUser.h
+//  SDECodeProjectMember.h
 //  iCPVanity
 //
 //  Created by serge desmedt on 25/01/14.
@@ -8,39 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SDECodeProjectMemberDelegate <NSObject>
-
-- (void) codeprojectMemberAvailable;
-
-- (void) codeprojectMemberProfileAvailable;
-
-- (void) codeprojectMemberArticleAvailable;
-
-@end
-
 @interface SDECodeProjectMember : NSObject
 
-@property (nonatomic, assign, readwrite) id<SDECodeProjectMemberDelegate> delegate;
-
-@property (nonatomic, readonly) int MemberId;
+@property (nonatomic, readwrite) int MemberId;
 
 @property (nonatomic, readwrite) NSString* MemberName;
 
-@property (nonatomic, readonly) NSString* ImageUrl;
+@property (nonatomic, readwrite) NSString* ImageUrl;
 
-@property (nonatomic, readonly) NSString* Reputation;
+@property (nonatomic, readwrite) NSString* Reputation;
 
-@property (nonatomic, readonly) NSString* ReputationGraphUrl;
+@property (nonatomic, readwrite) NSString* ReputationGraphUrl;
 
-@property (nonatomic, readonly) NSArray* ArticleList;
+@property (nonatomic, readwrite) NSArray* ArticleList;
 
-@property (nonatomic, readonly) NSString* AvgArticleRating;
+@property (nonatomic, readwrite) NSString* AvgArticleRating;
 
-@property (nonatomic, readonly) NSArray* BlogList;
+@property (nonatomic, readwrite) NSArray* BlogList;
 
-@property (nonatomic, readonly) NSString* AvgBlogRating;
+@property (nonatomic, readwrite) NSString* AvgBlogRating;
 
-- (id)initWithId:(int)memberId delegate:(id <SDECodeProjectMemberDelegate>)delegate;
+- (id)initWithId:(int)memberId;
 
 - (id)initWithManagedObject:(NSManagedObject*) managedObject;
 

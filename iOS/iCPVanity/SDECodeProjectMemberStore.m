@@ -84,14 +84,15 @@
     NSManagedObject* moMember = [self getMemberAsManagedObject:member.MemberId];
     if (moMember != NULL) {
         // Update
-        [moMember setValue: [NSNumber numberWithInt:member.MemberId] forKey:@"id"];
-        [moMember setValue:member.MemberName forKey:@"name"];
+        //[moMember setValue: [NSNumber numberWithInt:member.MemberId] forKey:@"id"];
+        //[moMember setValue:member.MemberName forKey:@"name"];
     } else {
         // Create
-        NSManagedObject *newMember = [NSEntityDescription insertNewObjectForEntityForName:@"CodeProjectMember" inManagedObjectContext:managedObjectContext];
-        [newMember setValue: [NSNumber numberWithInt:member.MemberId] forKey:@"id"];
-        [newMember setValue:member.MemberName forKey:@"name"];
+        moMember = [NSEntityDescription insertNewObjectForEntityForName:@"CodeProjectMember" inManagedObjectContext:managedObjectContext];
+        //[newMember setValue: [NSNumber numberWithInt:member.MemberId] forKey:@"id"];
+        //[newMember setValue:member.MemberName forKey:@"name"];
     }
+    [self fillManagedObject:moMember fromMember: member];
     
     NSError *error = nil;
     // Save the object to persistent store
@@ -99,6 +100,15 @@
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
     
+}
+
+- (void) fillManagedObject:(NSManagedObject*)mo fromMember:(SDECodeProjectMember*) member
+{
+    [mo setValue:[NSNumber numberWithInt:member.MemberId] forKey:@"id"];
+    [mo setValue:member.MemberName forKey:@"name"];
+    [mo setValue:member.Reputation forKey:@"reputation"];
+    [mo setValue:member.AvgArticleRating forKey:@"avg_article_rating"];
+    [mo setValue:member.AvgBlogRating forKey:@"avg_blog_rating"];
 }
 
 - (NSManagedObjectContext *)getManagedObjectContext {
