@@ -234,8 +234,6 @@
 		0BC0EC3D189413DE004C731E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0BC0EC4118941EDD004C731E /* SDECodeProjectUrlScheme.h */,
-				0BC0EC4218941EDD004C731E /* SDECodeProjectUrlScheme.m */,
 				0BC0EC44189421D6004C731E /* SDECodeProjectMember.h */,
 				0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */,
 				0BC0EC4718999DDB004C731E /* SDECodeProjectArticle.h */,
@@ -253,6 +251,8 @@
 		0BD285241A0E475400E67CA3 /* Web */ = {
 			isa = PBXGroup;
 			children = (
+				0BC0EC4118941EDD004C731E /* SDECodeProjectUrlScheme.h */,
+				0BC0EC4218941EDD004C731E /* SDECodeProjectUrlScheme.m */,
 				0BD285251A0E47A500E67CA3 /* SDECodeProjectWeb.h */,
 				0BD285261A0E47A500E67CA3 /* SDECodeProjectWeb.m */,
 			);

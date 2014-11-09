@@ -121,7 +121,7 @@
             return cell;
         }
         else {
-            member = [searchResults objectAtIndex:indexPath.row];
+            member = [searchResults objectAtIndex:(indexPath.row - (isNumeric?1:0))];
             
             cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:MemberCellIdentifier];
         }
@@ -178,14 +178,15 @@
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSMutableArray* filteredMemberList = [[NSMutableArray alloc] init];
     filterString = searchString;
+    int filterId = [filterString integerValue];
     
     if(self.memberList.count != 0) {
+        NSArray* filteredMemberList = [self.memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"MemberName beginswith %@ OR MemberId == %i", filterString, filterId]];
+        
+        searchResults = [[NSArray alloc] initWithArray:filteredMemberList];
         
     }
-
-    searchResults = [[NSArray alloc] initWithArray:filteredMemberList];
     
     return YES;
 }
@@ -198,10 +199,27 @@
 {
     int memberId = -1;
     if ([segue.identifier isEqualToString:@"ShowMember"]) {
-        // show the data of an existing member
-        self.searchDisplayController.searchBar.text = @"";
-        [self.searchDisplayController.searchBar resignFirstResponder];
-        self.searchDisplayController.active = FALSE;
+        SDECodeProjectMember* selectedMember = NULL;
+        int offset = 0;
+        if (self.searchDisplayController.active == TRUE) {
+            NSScanner *scanner = [NSScanner scannerWithString:filterString];
+            BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
+            
+            offset = isNumeric?1:0;
+            
+            NSIndexPath* selectedEntry = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            selectedMember = [searchResults objectAtIndex:(selectedEntry.row - offset)];
+            
+            // show the data of an existing member
+            self.searchDisplayController.searchBar.text = @"";
+            [self.searchDisplayController.searchBar resignFirstResponder];
+            self.searchDisplayController.active = FALSE;
+        }
+        else {
+            NSIndexPath* selectedEntry = [self.MemberListTableView indexPathForSelectedRow];
+            selectedMember = [self.memberList objectAtIndex:(selectedEntry.row - offset)];
+        }
+        memberId = selectedMember.MemberId;
         
     }
     else if ([segue.identifier isEqualToString:@"LoadMember"]){
