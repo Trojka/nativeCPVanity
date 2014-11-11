@@ -123,6 +123,16 @@ id<SDECodeProjectWebDelegate> progressDelegate;
         }
     }
     
+    // Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
+    // rticles by [^\(]*\([Aa]rticles?: ?([0-9]*)
+    NSString* articleCountMatchingPattern = @"rticles by [^\\(]*\\([Aa]rticles?: ?([0-9]*)";
+    memberToFill.ArticleCount = [self captureForPattern: articleCountMatchingPattern inText:page];
+    
+    // Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
+    // rticles by [^\(]*\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\)
+    NSString* blogCountMatchingPattern = @"rticles by [^\\(]*\\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\\)";
+    memberToFill.BlogCount = [self captureForPattern: blogCountMatchingPattern atIndex:2 inText:page];
+    
     // Average article rating: 4.66
     // verage article rating: ([0-9./]*)
     NSString* avgArticleRatingMatchingPattern = @"verage article rating: ([0-9.]*)";
@@ -147,8 +157,8 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     
     NSMutableArray* articleArray = [[NSMutableArray alloc] initWithCapacity:matches.count];
     NSMutableArray* blogArray = [[NSMutableArray alloc] initWithCapacity:matches.count];
-    memberToFill.ArticleList = articleArray;
-    memberToFill.BlogList = blogArray;
+    //memberToFill.ArticleList = articleArray;
+    //memberToFill.BlogList = blogArray;
     
     for (NSTextCheckingResult* articleMatch in matches)
     {
@@ -241,6 +251,19 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     {
         NSTextCheckingResult* firstMatch = [matches firstObject];
         NSRange matchRange = [firstMatch rangeAtIndex:1];
+        captureString = [text substringWithRange:matchRange];
+    }
+    
+    return captureString;
+}
+
+- (NSString*)captureForPattern:(NSString*)pattern atIndex:(int)index inText:(NSString*)text {
+    NSString *captureString = @"Error";
+    NSArray *matches = [self matchesForPattern: pattern inText:text];
+    if(matches.count != 0)
+    {
+        NSTextCheckingResult* aMatch = [matches firstObject];
+        NSRange matchRange = [aMatch rangeAtIndex:index];
         captureString = [text substringWithRange:matchRange];
     }
     

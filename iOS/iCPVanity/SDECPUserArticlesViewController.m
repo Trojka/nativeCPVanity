@@ -37,7 +37,7 @@
         
         NSIndexPath *indexPath = [self.ArticleView indexPathForSelectedRow];
 
-        pageViewController.Url = ((SDECodeProjectArticle*)[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row]).Link;
+        //pageViewController.Url = ((SDECodeProjectArticle*)[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row]).Link;
     }
 }
 
@@ -57,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.CodeprojectMember.ArticleList.count;
+    return 0; //self.CodeprojectMember.ArticleList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,7 +65,7 @@
     static NSString *CellIdentifier = @"ArticleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    SDECodeProjectArticle *article = [self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row];
+    SDECodeProjectArticle *article = NULL; //[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row];
 
     ((UILabel*)[cell viewWithTag:100]).text = article.Title;
     ((UILabel*)[cell viewWithTag:101]).text = article.DateUpdated;
