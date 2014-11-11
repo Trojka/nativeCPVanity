@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "SDECodeProjectMember.h"
+#import "SDECodeProjectMemberArticles.h"
 
 @protocol SDECodeProjectWebDelegate <NSObject>
 
@@ -23,5 +24,7 @@
 @interface SDECodeProjectWeb : NSObject
 
 -(void)fillMember:(SDECodeProjectMember*)member delegate:(id <SDECodeProjectWebDelegate>)delegate;
+
+-(void)fillMemberArticles:(SDECodeProjectMemberArticles*)memberArticles delegate:(id <SDECodeProjectWebDelegate>)delegate;
 
 @end

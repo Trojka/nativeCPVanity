@@ -29,6 +29,7 @@
 @implementation SDECodeProjectWeb
 
 SDECodeProjectMember* memberToFill;
+SDECodeProjectMemberArticles* memberArticlesToFill;
 
 id<SDECodeProjectWebDelegate> progressDelegate;
 
@@ -36,6 +37,7 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 {
     progressDelegate = delegate;
     memberToFill = member;
+    memberArticlesToFill = NULL;
     
     //member.ReputationGraphUrl = [SDECodeProjectUrlScheme getMemberReputationGraphUrl:member.MemberId];
     
@@ -52,7 +54,21 @@ id<SDECodeProjectWebDelegate> progressDelegate;
                             [NSURLRequest requestWithURL:
                              [NSURL URLWithString:memberArticlesPageUrl]]
                                                          delegate:self];
+}
+
+
+-(void)fillMemberArticles:(SDECodeProjectMemberArticles*)memberArticles delegate:(id <SDECodeProjectWebDelegate>)delegate
+{
+    progressDelegate = delegate;
+    memberArticlesToFill = memberArticles;
+    memberToFill = NULL;
     
+    NSString* memberArticlesPageUrl = [SDECodeProjectUrlScheme getMemberArticlesPageUrl:memberArticles.MemberId];
+    articlePageData = [NSMutableData new];
+    articlePageConnection =[NSURLConnection connectionWithRequest:
+                            [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:memberArticlesPageUrl]]
+                                                         delegate:self];
     
 }
 
@@ -122,7 +138,7 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 }
 
 
-- (void)fillMemberArticles:(SDECodeProjectMember *)member fromPage:(NSString*) page
+- (void)fillMemberArticles:(SDECodeProjectMemberArticles*)memberArticles fromPage:(NSString*) page
 {
     // <tr id="ctl00_MC_AR_ctl01_CAR_MainArticleRow" valign="top">
     // <tr id="ctl\d*_MC_.R_ctl\d*_CAR_MainArticleRow[\s\S]*?</table>[\s\S]*?</tr>
@@ -258,8 +274,11 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     {
         NSString *articlePage = [[NSString alloc]initWithData:articlePageData encoding:NSASCIIStringEncoding];
         
-        [self fillMemberProfile:memberToFill fromArticlePage:articlePage];
-        [self fillMemberArticles:memberToFill fromPage:articlePage];
+        if(memberToFill != NULL)
+            [self fillMemberProfile:memberToFill fromArticlePage:articlePage];
+        
+        if(memberArticlesToFill != NULL)
+           [self fillMemberArticles:memberArticlesToFill fromPage:articlePage];
         
         self.ArticlePageLoaded = true;
         

@@ -39,6 +39,7 @@
 		0BC0EC4318941EDD004C731E /* SDECodeProjectUrlScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC4218941EDD004C731E /* SDECodeProjectUrlScheme.m */; };
 		0BC0EC46189421D6004C731E /* SDECodeProjectMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */; };
 		0BC0EC4918999DDB004C731E /* SDECodeProjectArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC4818999DDB004C731E /* SDECodeProjectArticle.m */; };
+		0BCFDC4B1A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFDC4A1A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.m */; };
 		0BD285231A0E164D00E67CA3 /* SDECodeProjectMemberStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD285221A0E164D00E67CA3 /* SDECodeProjectMemberStore.m */; };
 		0BD285271A0E47A500E67CA3 /* SDECodeProjectWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD285261A0E47A500E67CA3 /* SDECodeProjectWeb.m */; };
 		0BEDC13D19FAE05100DCCBD2 /* SDECPUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEDC13C19FAE05100DCCBD2 /* SDECPUserListViewController.m */; };
@@ -107,6 +108,8 @@
 		0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectMember.m; sourceTree = "<group>"; };
 		0BC0EC4718999DDB004C731E /* SDECodeProjectArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectArticle.h; sourceTree = "<group>"; };
 		0BC0EC4818999DDB004C731E /* SDECodeProjectArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectArticle.m; sourceTree = "<group>"; };
+		0BCFDC491A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectMemberArticles.h; sourceTree = "<group>"; };
+		0BCFDC4A1A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectMemberArticles.m; sourceTree = "<group>"; };
 		0BD285211A0E164D00E67CA3 /* SDECodeProjectMemberStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectMemberStore.h; sourceTree = "<group>"; };
 		0BD285221A0E164D00E67CA3 /* SDECodeProjectMemberStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECodeProjectMemberStore.m; sourceTree = "<group>"; };
 		0BD285251A0E47A500E67CA3 /* SDECodeProjectWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECodeProjectWeb.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 			children = (
 				0BC0EC44189421D6004C731E /* SDECodeProjectMember.h */,
 				0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */,
+				0BCFDC491A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.h */,
+				0BCFDC4A1A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.m */,
 				0BC0EC4718999DDB004C731E /* SDECodeProjectArticle.h */,
 				0BC0EC4818999DDB004C731E /* SDECodeProjectArticle.m */,
 				0B4DB54618AEB45E0096A6BE /* SDECodeProjectFeed.h */,
@@ -389,6 +394,7 @@
 				0BD285231A0E164D00E67CA3 /* SDECodeProjectMemberStore.m in Sources */,
 				0BC0EC46189421D6004C731E /* SDECodeProjectMember.m in Sources */,
 				0BC0EC131893C8D6004C731E /* SDEAppDelegate.m in Sources */,
+				0BCFDC4B1A1299FA00CA7CE6 /* SDECodeProjectMemberArticles.m in Sources */,
 				0BC0EC1C1893C8D6004C731E /* SDECPArticleViewController.m in Sources */,
 				0BEDC13D19FAE05100DCCBD2 /* SDECPUserListViewController.m in Sources */,
 				0BC0EC3C1893CD39004C731E /* SDECPForumsViewController.m in Sources */,
