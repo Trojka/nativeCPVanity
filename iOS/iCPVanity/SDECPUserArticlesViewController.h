@@ -10,11 +10,13 @@
 
 #import "SDEUserDataViewController.h"
 #import "SDECodeProjectMember.h"
+#import "SDECodeProjectWeb.h"
 
-@interface SDECPUserArticlesViewController : UIViewController<UITableViewDataSource>
+@interface SDECPUserArticlesViewController : UIViewController<UITableViewDataSource, SDECodeProjectWebDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *ArticleView;
 
-@property (nonatomic, readwrite) SDECodeProjectMember* CodeprojectMember;
+//@property (nonatomic, readwrite) SDECodeProjectMember* CodeprojectMember;
+@property (nonatomic, readwrite) int CodeprojectMemberId;
 
 @end

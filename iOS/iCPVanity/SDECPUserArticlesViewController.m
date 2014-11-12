@@ -10,6 +10,7 @@
 #import "SDECPPageViewController.h"
 #import "SDECPUserReputationViewController.h"
 #import "SDECodeProjectArticle.h"
+#import "SDECodeProjectMemberArticles.h"
 
 @interface SDECPUserArticlesViewController ()
 
@@ -17,11 +18,54 @@
 
 @implementation SDECPUserArticlesViewController
 
+UIActivityIndicatorView *activityView;
+
+SDECodeProjectMemberArticles* memberArticles;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake (120.0, 185.0, 80, 80)];
+    activityView.color = [UIColor darkGrayColor];
+    
+    [self.view addSubview:activityView];
+    
+    [self fillWithArticlesOfMemberWithId:self.CodeprojectMemberId];
 	
+    //self.ArticleView.dataSource = self;
+}
+
+
+- (void) fillWithArticlesOfMemberWithId:(NSInteger)memberId {
+    //self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId];
+    
+    memberArticles = [[SDECodeProjectMemberArticles alloc]init];
+    memberArticles.MemberId = self.CodeprojectMemberId;
+    
+    SDECodeProjectWeb* cpWeb = [[SDECodeProjectWeb alloc]init];
+    [cpWeb fillMemberArticles:memberArticles delegate:self];
+
+    [activityView startAnimating];
+    
+}
+
+- (void) codeprojectMemberAvailable {
+    
+}
+
+
+- (void)codeprojectMemberProfileAvailable {
+    
+}
+
+
+- (void)codeprojectMemberArticleAvailable {
+    
+    [activityView stopAnimating];
+    
     self.ArticleView.dataSource = self;
+    [self.ArticleView reloadData];
 }
 
 
@@ -30,7 +74,7 @@
     if ([segue.identifier isEqualToString:@"MemberReputationSegue"]) {
         SDECPUserReputationViewController *memberReputationViewController = (SDECPUserReputationViewController*)segue.destinationViewController;
         
-        memberReputationViewController.CodeprojectMember = self.CodeprojectMember;
+        //memberReputationViewController.CodeprojectMember = self.CodeprojectMember;
     }
     else if([segue.identifier isEqualToString:@"MemberArticleSegue"]) {
         SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
@@ -57,7 +101,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0; //self.CodeprojectMember.ArticleList.count;
+    if(memberArticles == NULL)
+        return 0; //self.CodeprojectMember.ArticleList.count;
+    
+    return memberArticles.ArticleList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,7 +112,7 @@
     static NSString *CellIdentifier = @"ArticleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    SDECodeProjectArticle *article = NULL; //[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row];
+    SDECodeProjectArticle *article = [memberArticles.ArticleList objectAtIndex:indexPath.row]; //[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row];
 
     ((UILabel*)[cell viewWithTag:100]).text = article.Title;
     ((UILabel*)[cell viewWithTag:101]).text = article.DateUpdated;

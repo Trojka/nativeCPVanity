@@ -156,8 +156,8 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     NSArray *matches = [self matchesForPattern: articleMatchingPattern inText:page];
     
     NSMutableArray* articleArray = [[NSMutableArray alloc] initWithCapacity:matches.count];
-    NSMutableArray* blogArray = [[NSMutableArray alloc] initWithCapacity:matches.count];
-    //memberToFill.ArticleList = articleArray;
+    //NSMutableArray* blogArray = [[NSMutableArray alloc] initWithCapacity:matches.count];
+    memberArticlesToFill.ArticleList = articleArray;
     //memberToFill.BlogList = blogArray;
     
     for (NSTextCheckingResult* articleMatch in matches)
@@ -219,10 +219,12 @@ id<SDECodeProjectWebDelegate> progressDelegate;
         
         NSLog(@"Article completed.");
         
-        if(article.IsArticle)
-            [articleArray addObject:article];
-        else
-            [blogArray addObject:article];
+        [articleArray addObject:article];
+        
+        //if(article.IsArticle)
+        //    [articleArray addObject:article];
+        //else
+        //    [blogArray addObject:article];
         
     }
 }

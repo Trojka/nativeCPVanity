@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SDECodeProjectMemberArticles : NSArray
+@interface SDECodeProjectMemberArticles : NSObject
 
 @property (nonatomic, readwrite) int MemberId;
+
+@property (nonatomic, readwrite) NSArray* ArticleList;
 
 @end

@@ -107,7 +107,7 @@ UIActivityIndicatorView *activityView;
     if ([segue.identifier isEqualToString:@"MemberArticlesSegue"]) {
         
         SDECPUserArticlesViewController *memberArticlesViewController = (SDECPUserArticlesViewController*)segue.destinationViewController;
-        memberArticlesViewController.CodeprojectMember = self.CodeprojectMember;
+        memberArticlesViewController.CodeprojectMemberId = self.CodeprojectMember.MemberId;
         
     }
 }
