@@ -18,7 +18,7 @@
 
 @property (nonatomic, readwrite) NSString* Reputation;
 
-@property (nonatomic, readwrite) NSString* ReputationGraphUrl;
+@property (nonatomic, readonly) NSString* reputationGraphUrl;
 
 //@property (nonatomic, readwrite) NSArray* ArticleList;
 

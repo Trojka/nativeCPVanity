@@ -11,23 +11,27 @@
 #import "SDECodeProjectUrlScheme.h"
 
 
-@interface SDECodeProjectMember()
-{
-}
-
-@end
+//@interface SDECodeProjectMember()
+//{
+//}
+//
+//@end
 
 
 @implementation SDECodeProjectMember
 
-@synthesize ReputationGraphUrl = _reputationGraphUrl;
+//@synthesize reputationGraphUrl = _reputationGraphUrl;
 
-- (NSString*) ReputationGraphUrl {
-    if(_reputationGraphUrl == NULL)
-    {
-        _reputationGraphUrl == [SDECodeProjectUrlScheme getMemberProfilePageUrl:self.MemberId];
-    }
-    return _reputationGraphUrl;
+- (NSString*) reputationGraphUrl {
+    
+    NSLog(@"Getting reputationGraphUrl");
+    return [SDECodeProjectUrlScheme getMemberReputationGraphUrl:self.MemberId];
+    //if(_reputationGraphUrl == NULL)
+    //{
+    //    NSLog(@"Getting reputationGraphUrl");
+    //    _reputationGraphUrl = [SDECodeProjectUrlScheme getMemberProfilePageUrl:self.MemberId];
+    //}
+    //return _reputationGraphUrl;
 }
 
 - (id)initWithId:(int)memberId
