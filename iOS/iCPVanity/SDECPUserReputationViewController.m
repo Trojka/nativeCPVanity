@@ -24,14 +24,14 @@
 {
     [super viewDidLoad];
     
-    NSString* imagUrl = [self.CodeprojectMember.ReputationGraphUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* graphUrl = self.CodeprojectMember.reputationGraphUrl;
+    NSString* imagUrl = [graphUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     reputationGraphData = [NSMutableData new];
     reputationGraphConnection =[NSURLConnection connectionWithRequest:
                             [NSURLRequest requestWithURL:
                              [NSURL URLWithString:imagUrl]]
                                                          delegate:self];
-
     
     activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake (120.0, 185.0, 80, 80)];
     activityView.color = [UIColor darkGrayColor];

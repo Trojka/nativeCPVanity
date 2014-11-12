@@ -31,7 +31,7 @@ SDECodeProjectMemberArticles* memberArticles;
     
     [self.view addSubview:activityView];
     
-    [self fillWithArticlesOfMemberWithId:self.CodeprojectMemberId];
+    [self fillWithArticlesOfMemberWithId:self.CodeprojectMember.MemberId];
 	
     //self.ArticleView.dataSource = self;
 }
@@ -41,7 +41,7 @@ SDECodeProjectMemberArticles* memberArticles;
     //self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId];
     
     memberArticles = [[SDECodeProjectMemberArticles alloc]init];
-    memberArticles.MemberId = self.CodeprojectMemberId;
+    memberArticles.MemberId = self.CodeprojectMember.MemberId;
     
     SDECodeProjectWeb* cpWeb = [[SDECodeProjectWeb alloc]init];
     [cpWeb fillMemberArticles:memberArticles delegate:self];
@@ -74,7 +74,7 @@ SDECodeProjectMemberArticles* memberArticles;
     if ([segue.identifier isEqualToString:@"MemberReputationSegue"]) {
         SDECPUserReputationViewController *memberReputationViewController = (SDECPUserReputationViewController*)segue.destinationViewController;
         
-        //memberReputationViewController.CodeprojectMember = self.CodeprojectMember;
+        memberReputationViewController.CodeprojectMember = self.CodeprojectMember;
     }
     else if([segue.identifier isEqualToString:@"MemberArticleSegue"]) {
         SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
