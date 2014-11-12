@@ -11,7 +11,7 @@
 @implementation SDECodeProjectArticle
 
 - (Boolean)IsArticle {
-    // Blog posts contain the words [Technical Blog]
+    // Article posts do NOT contain the words [Technical Blog]
     return [self.Title rangeOfString:@"[Technical Blog]"].location == NSNotFound;
 }
 
