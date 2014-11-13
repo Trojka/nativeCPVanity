@@ -130,9 +130,14 @@
         member = [self.memberList objectAtIndex:indexPath.row];
     }
     
-    static NSInteger titleTag = 100;
+    static NSInteger memberNameTag = 100;
+    static NSInteger memberPostsCountTag = 101;
+    static NSInteger memberReputationTag = 102;
+    static NSInteger memberGravatarTag = 105;
     
-    ((UILabel*)[cell viewWithTag:titleTag]).text = member.MemberName;
+    ((UILabel*)[cell viewWithTag:memberNameTag]).text = member.MemberName;
+    ((UILabel*)[cell viewWithTag:memberPostsCountTag]).text = [NSString stringWithFormat:@"Posts: %d", (member.ArticleCount + member.BlogCount)];
+    ((UILabel*)[cell viewWithTag:memberReputationTag]).text = member.Reputation;
     
     return cell;
 }

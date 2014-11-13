@@ -22,13 +22,13 @@
 
 //@property (nonatomic, readwrite) NSArray* ArticleList;
 
-@property (nonatomic, readwrite) NSString* ArticleCount;
+@property (nonatomic, readwrite) int ArticleCount;
 
 @property (nonatomic, readwrite) NSString* AvgArticleRating;
 
 //@property (nonatomic, readwrite) NSArray* BlogList;
 
-@property (nonatomic, readwrite) NSString* BlogCount;
+@property (nonatomic, readwrite) int BlogCount;
 
 @property (nonatomic, readwrite) NSString* AvgBlogRating;
 

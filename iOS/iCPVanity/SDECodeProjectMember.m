@@ -54,6 +54,9 @@
     {
         self.MemberId = [(NSNumber*)[managedObject valueForKey:@"id"] integerValue];
         self.MemberName = [managedObject valueForKey:@"name"];
+        self.ArticleCount = [(NSNumber*)[managedObject valueForKey:@"article_count"] integerValue];
+        self.BlogCount = [(NSNumber*)[managedObject valueForKey:@"blog_count"] integerValue];
+        self.Reputation = [managedObject valueForKey:@"reputation"];
     }
     
     return self;

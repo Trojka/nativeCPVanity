@@ -126,12 +126,22 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     // Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
     // rticles by [^\(]*\([Aa]rticles?: ?([0-9]*)
     NSString* articleCountMatchingPattern = @"rticles by [^\\(]*\\([Aa]rticles?: ?([0-9]*)";
-    memberToFill.ArticleCount = [self captureForPattern: articleCountMatchingPattern inText:page];
+    NSString* articleCountAsString = [self captureForPattern: articleCountMatchingPattern inText: page];
+    NSInteger articleCount;
+    NSScanner *articleCountscanner = [NSScanner scannerWithString:articleCountAsString];
+    [articleCountscanner scanInteger: &articleCount];
+    memberToFill.ArticleCount = articleCount;
+    NSLog(@"ArticleCount: %d", memberToFill.ArticleCount);
     
     // Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
     // rticles by [^\(]*\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\)
     NSString* blogCountMatchingPattern = @"rticles by [^\\(]*\\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\\)";
-    memberToFill.BlogCount = [self captureForPattern: blogCountMatchingPattern atIndex:2 inText:page];
+    NSString* blogCountAsString = [self captureForPattern: blogCountMatchingPattern atIndex:2 inText:page];
+    NSInteger blogCount;
+    NSScanner *blogCountscanner = [NSScanner scannerWithString:blogCountAsString];
+    [blogCountscanner scanInteger: &blogCount];
+    memberToFill.BlogCount = blogCount;
+    NSLog(@"BlogCount: %d", memberToFill.BlogCount);
     
     // Average article rating: 4.66
     // verage article rating: ([0-9./]*)

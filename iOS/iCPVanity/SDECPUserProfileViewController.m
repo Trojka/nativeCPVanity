@@ -80,10 +80,10 @@ UIActivityIndicatorView *activityView;
     self.ReputationLabel.text = self.CodeprojectMember.Reputation;
     
     self.AvgArticleRatingLabel.text = [NSString stringWithFormat:@"Average articles rating: %@", self.CodeprojectMember.AvgArticleRating];
-    self.ArticleCountLabel.text = [NSString stringWithFormat:@"%@ articles available", self.CodeprojectMember.ArticleCount];
+    self.ArticleCountLabel.text = [NSString stringWithFormat:@"%d articles available", self.CodeprojectMember.ArticleCount];
     
     self.AvgBlogRatingLabel.text = [NSString stringWithFormat:@"Average blog rating: %@", self.CodeprojectMember.AvgBlogRating];
-    self.BlogCountLabel.text = [NSString stringWithFormat:@"%@ blogposts available", self.CodeprojectMember.BlogCount];
+    self.BlogCountLabel.text = [NSString stringWithFormat:@"%d blogposts available", self.CodeprojectMember.BlogCount];
     
     NSString* imagUrl = [self.CodeprojectMember.ImageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagUrl]]];
