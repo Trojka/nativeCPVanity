@@ -107,8 +107,8 @@
     [mo setValue:[NSNumber numberWithInt:member.MemberId] forKey:@"id"];
     [mo setValue:member.MemberName forKey:@"name"];
     [mo setValue:member.Reputation forKey:@"reputation"];
-    [mo setValue:member.AvgArticleRating forKey:@"avg_article_rating"];
-    [mo setValue:member.AvgBlogRating forKey:@"avg_blog_rating"];
+    [mo setValue:[NSNumber numberWithInt:member.ArticleCount] forKey:@"article_count"];
+    [mo setValue:[NSNumber numberWithInt:member.BlogCount] forKey:@"blog_count"];
 }
 
 - (NSManagedObjectContext *)getManagedObjectContext {
