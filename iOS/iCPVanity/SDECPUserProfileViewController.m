@@ -63,7 +63,7 @@ UIActivityIndicatorView *activityView;
     self.AvgBlogRatingLabel.text = [NSString stringWithFormat:@"Average blog rating: %@", self.CodeprojectMember.AvgBlogRating];
     self.BlogCountLabel.text = [NSString stringWithFormat:@"%d blogposts available", self.CodeprojectMember.BlogCount];
     
-    NSString* imagUrl = [self.CodeprojectMember.ImageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* imagUrl = [self.CodeprojectMember.imageUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagUrl]]];
     [self.MemberImage setImage:image];
     

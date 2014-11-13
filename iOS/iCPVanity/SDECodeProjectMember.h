@@ -14,7 +14,7 @@
 
 @property (nonatomic, readwrite) NSString* MemberName;
 
-@property (nonatomic, readwrite) NSString* ImageUrl;
+@property (nonatomic, readwrite) NSString* imageUrl;
 
 @property (nonatomic, readwrite) NSString* Reputation;
 

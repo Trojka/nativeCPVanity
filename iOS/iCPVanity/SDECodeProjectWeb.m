@@ -80,16 +80,8 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     NSString* imageUrlMatchingPattern = @"<img id=\"ctl\\d*_MC_Prof_MemberImage[\\s\\S]*?src=\"([\\s\\S]*?)\"";
     NSString* imageUrl = [self captureForPattern: imageUrlMatchingPattern inText:page];
     
-    // Sometimes the image URL allready has the codeproject baseurl in it, other times it hasn't
-    if([imageUrl rangeOfString:[SDECodeProjectUrlScheme baseUrl]].location == NSNotFound)
-    {
-        memberToFill.ImageUrl = [[SDECodeProjectUrlScheme baseUrl] stringByAppendingString:imageUrl];
-    }
-    else
-    {
-        memberToFill.ImageUrl = imageUrl;
-    }
-    NSLog(@"ImageUrl: %@", memberToFill.ImageUrl);
+    memberToFill.imageUrl = imageUrl;
+    NSLog(@"ImageUrl: %@", memberToFill.imageUrl);
     
     // <span id="ctl00_MC_Prof_TotalRep" class="large-text">5,072</span>
     // <span id="ctl\d*_MC_Prof_TotalRep[\s\S]*?>([0-9,]*)
