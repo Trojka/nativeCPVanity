@@ -28,6 +28,8 @@
 
 @property (nonatomic, readwrite) NSString* AvgBlogRating;
 
+@property (nonatomic, readwrite) UIImage* Gravatar;
+
 - (id)initWithId:(int)memberId;
 
 - (id)initWithManagedObject:(NSManagedObject*) managedObject;
