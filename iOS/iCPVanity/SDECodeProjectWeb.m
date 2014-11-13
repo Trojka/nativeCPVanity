@@ -127,9 +127,11 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     // rticles by [^\(]*\([Aa]rticles?: ?([0-9]*)
     NSString* articleCountMatchingPattern = @"rticles by [^\\(]*\\([Aa]rticles?: ?([0-9]*)";
     NSString* articleCountAsString = [self captureForPattern: articleCountMatchingPattern inText: page];
-    NSInteger articleCount;
-    NSScanner *articleCountscanner = [NSScanner scannerWithString:articleCountAsString];
-    [articleCountscanner scanInteger: &articleCount];
+    NSInteger articleCount = 0;
+    if(articleCountAsString != NULL) {
+        NSScanner *articleCountscanner = [NSScanner scannerWithString:articleCountAsString];
+        [articleCountscanner scanInteger: &articleCount];
+    }
     memberToFill.ArticleCount = articleCount;
     NSLog(@"ArticleCount: %d", memberToFill.ArticleCount);
     
@@ -137,22 +139,32 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     // rticles by [^\(]*\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\)
     NSString* blogCountMatchingPattern = @"rticles by [^\\(]*\\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\\)";
     NSString* blogCountAsString = [self captureForPattern: blogCountMatchingPattern atIndex:2 inText:page];
-    NSInteger blogCount;
-    NSScanner *blogCountscanner = [NSScanner scannerWithString:blogCountAsString];
-    [blogCountscanner scanInteger: &blogCount];
+    NSInteger blogCount = 0;
+    if(blogCountAsString != NULL) {
+        NSScanner *blogCountscanner = [NSScanner scannerWithString:blogCountAsString];
+        [blogCountscanner scanInteger: &blogCount];
+    }
     memberToFill.BlogCount = blogCount;
     NSLog(@"BlogCount: %d", memberToFill.BlogCount);
     
     // Average article rating: 4.66
     // verage article rating: ([0-9./]*)
     NSString* avgArticleRatingMatchingPattern = @"verage article rating: ([0-9.]*)";
-    memberToFill.AvgArticleRating = [self captureForPattern: avgArticleRatingMatchingPattern inText:page];
+    NSString* avgArticleRating = [self captureForPattern: avgArticleRatingMatchingPattern inText:page];
+    if (avgArticleRating == NULL) {
+        avgArticleRating = @"-";
+    }
+    memberToFill.AvgArticleRating = avgArticleRating;
     NSLog(@"AvgArticleRating: %@", memberToFill.AvgArticleRating);
     
     // Average blogs rating: 5.00
     // verage blogs rating: ([0-9./]*)
     NSString* avgBlogRatingMatchingPattern = @"verage blogs rating: ([0-9.]*)";
-    memberToFill.AvgBlogRating = [self captureForPattern: avgBlogRatingMatchingPattern inText:page];
+    NSString* avgBlogRating = [self captureForPattern: avgBlogRatingMatchingPattern inText:page];
+    if (avgBlogRating == NULL) {
+        avgBlogRating = @"-";
+    }
+    memberToFill.AvgBlogRating = avgBlogRating;
     NSLog(@"AvgBlogRating: %@", memberToFill.AvgBlogRating);
     
 }
@@ -257,7 +269,7 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 
 
 - (NSString*)captureForPattern:(NSString*)pattern inText:(NSString*)text {
-    NSString *captureString = @"Error";
+    NSString *captureString = NULL;
     NSArray *matches = [self matchesForPattern: pattern inText:text];
     if(matches.count != 0)
     {
@@ -270,13 +282,15 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 }
 
 - (NSString*)captureForPattern:(NSString*)pattern atIndex:(int)index inText:(NSString*)text {
-    NSString *captureString = @"Error";
+    NSString *captureString = NULL;
     NSArray *matches = [self matchesForPattern: pattern inText:text];
     if(matches.count != 0)
     {
         NSTextCheckingResult* aMatch = [matches firstObject];
-        NSRange matchRange = [aMatch rangeAtIndex:index];
-        captureString = [text substringWithRange:matchRange];
+        if(index < aMatch.numberOfRanges) {
+            NSRange matchRange = [aMatch rangeAtIndex:index];
+            captureString = [text substringWithRange:matchRange];
+        }
     }
     
     return captureString;
