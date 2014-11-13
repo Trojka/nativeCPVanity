@@ -32,13 +32,11 @@ SDECodeProjectMemberArticles* memberArticles;
     [self.view addSubview:activityView];
     
     [self fillWithArticlesOfMemberWithId:self.CodeprojectMember.MemberId];
-	
-    //self.ArticleView.dataSource = self;
+
 }
 
 
 - (void) fillWithArticlesOfMemberWithId:(NSInteger)memberId {
-    //self.CodeprojectMember = [[SDECodeProjectMember alloc] initWithId:memberId];
     
     memberArticles = [[SDECodeProjectMemberArticles alloc]init];
     memberArticles.MemberId = self.CodeprojectMember.MemberId;
@@ -80,8 +78,6 @@ SDECodeProjectMemberArticles* memberArticles;
         SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.ArticleView indexPathForSelectedRow];
-
-        //pageViewController.Url = ((SDECodeProjectArticle*)[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row]).Link;
     }
 }
 
@@ -102,7 +98,7 @@ SDECodeProjectMemberArticles* memberArticles;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(memberArticles == NULL)
-        return 0; //self.CodeprojectMember.ArticleList.count;
+        return 0;
     
     return memberArticles.ArticleList.count;
 }
@@ -112,7 +108,7 @@ SDECodeProjectMemberArticles* memberArticles;
     static NSString *CellIdentifier = @"ArticleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    SDECodeProjectArticle *article = [memberArticles.ArticleList objectAtIndex:indexPath.row]; //[self.CodeprojectMember.ArticleList objectAtIndex:indexPath.row];
+    SDECodeProjectArticle *article = [memberArticles.ArticleList objectAtIndex:indexPath.row];
 
     ((UILabel*)[cell viewWithTag:100]).text = article.Title;
     ((UILabel*)[cell viewWithTag:101]).text = article.DateUpdated;

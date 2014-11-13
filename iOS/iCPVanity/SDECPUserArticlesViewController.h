@@ -17,6 +17,5 @@
 @property (strong, nonatomic) IBOutlet UITableView *ArticleView;
 
 @property (nonatomic, readwrite) SDECodeProjectMember* CodeprojectMember;
-//@property (nonatomic, readwrite) int CodeprojectMemberId;
 
 @end

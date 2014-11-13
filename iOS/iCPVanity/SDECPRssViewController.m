@@ -87,8 +87,7 @@
     
     CGRect paragraphRect =
     [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                       options:(NSStringDrawingUsesLineFragmentOrigin
-                                /*|NSStringDrawingUsesFontLeading*/)
+                       options:(NSStringDrawingUsesLineFragmentOrigin)
                     attributes:attributes
                        context:nil];
     

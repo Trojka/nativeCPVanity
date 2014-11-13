@@ -25,8 +25,6 @@
 
 @property (strong, nonatomic) SDECodeProjectMember *CodeprojectMember;
 
-@property (strong, nonatomic) IBOutlet UITextField *MemberIdTextField;
-
 @property (strong, nonatomic) IBOutlet UILabel *NameLabel;
 
 @property (strong, nonatomic) IBOutlet UIImageView *MemberImage;

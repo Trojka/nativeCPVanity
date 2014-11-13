@@ -20,13 +20,9 @@
 
 @property (nonatomic, readonly) NSString* reputationGraphUrl;
 
-//@property (nonatomic, readwrite) NSArray* ArticleList;
-
 @property (nonatomic, readwrite) int ArticleCount;
 
 @property (nonatomic, readwrite) NSString* AvgArticleRating;
-
-//@property (nonatomic, readwrite) NSArray* BlogList;
 
 @property (nonatomic, readwrite) int BlogCount;
 

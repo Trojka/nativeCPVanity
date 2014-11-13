@@ -14,15 +14,6 @@
 
 UIActivityIndicatorView *activityView;
 
-//- (NSManagedObjectContext *)managedObjectContext {
-//    NSManagedObjectContext *context = nil;
-//    id delegate = [[UIApplication sharedApplication] delegate];
-//    if ([delegate performSelector:@selector(managedObjectContext)]) {
-//        context = [delegate managedObjectContext];
-//    }
-//    return context;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,10 +25,6 @@ UIActivityIndicatorView *activityView;
     self.AvgBlogRatingLabel.text = @"Average blog rating:";
     self.BlogCountLabel.text = @"0 blogposts available";
     
-    // 122954 - with image
-    // 15715 - mine
-    _MemberIdTextField.text = @"15715";
-    
     activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake (120.0, 185.0, 80, 80)];
     activityView.color = [UIColor darkGrayColor];
     
@@ -45,15 +32,6 @@ UIActivityIndicatorView *activityView;
     
     [self fillWithMemberWithId:self.CodeprojectMemberId];
 
-}
-
-- (IBAction) fillWithMember {
-    
-    [_MemberIdTextField resignFirstResponder];
-    NSString* memberIdAsString = _MemberIdTextField.text;
-    NSInteger memberId = [memberIdAsString integerValue];
-
-    [self fillWithMemberWithId:memberId];
 }
 
 - (IBAction) saveMember {
