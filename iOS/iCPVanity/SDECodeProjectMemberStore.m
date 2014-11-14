@@ -122,6 +122,18 @@
     
 }
 
+- (void) deleteMember:(int) memberId
+{
+    NSManagedObject* moMember = [self getMemberAsManagedObject:memberId];
+    if (moMember == NULL) {
+        return;
+    }
+    
+    NSError * error = nil;
+    [managedObjectContext deleteObject:moMember];
+    [managedObjectContext save:&error];
+}
+
 + (NSString*) getMemberGravatarPath:(SDECodeProjectMember*) member
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

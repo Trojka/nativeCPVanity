@@ -22,4 +22,6 @@
 
 - (void) saveMember:(SDECodeProjectMember*) member;
 
+- (void) deleteMember:(int) memberId;
+
 @end
