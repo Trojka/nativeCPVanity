@@ -10,6 +10,7 @@
 #import "SDECodeProjectMemberStore.h"
 #import "SDECodeProjectMember.h"
 #import "SDECPUserProfileViewController.h"
+#import "SDECodeProjectMemberStore.h"
 
 @interface SDECPUserListViewController ()
 {
@@ -138,6 +139,9 @@
     ((UILabel*)[cell viewWithTag:memberNameTag]).text = member.MemberName;
     ((UILabel*)[cell viewWithTag:memberPostsCountTag]).text = [NSString stringWithFormat:@"Posts: %d", (member.ArticleCount + member.BlogCount)];
     ((UILabel*)[cell viewWithTag:memberReputationTag]).text = member.Reputation;
+    
+    UIImage* gravatar = [SDECodeProjectMemberStore getMemberGravatar:member];
+    ((UIImageView*)[cell viewWithTag:memberGravatarTag]).image = gravatar;
     
     return cell;
 }

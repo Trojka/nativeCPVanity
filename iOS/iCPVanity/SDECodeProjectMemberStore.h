@@ -18,6 +18,8 @@
 
 - (NSArray*) getAllMembers;
 
++ (UIImage*) getMemberGravatar:(SDECodeProjectMember*) member;
+
 - (void) saveMember:(SDECodeProjectMember*) member;
 
 @end

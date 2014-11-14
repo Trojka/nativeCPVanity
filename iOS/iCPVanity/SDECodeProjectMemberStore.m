@@ -67,17 +67,27 @@
     return moMember;
 }
 
-- (SDECodeProjectMember*) getMember:(int)memberId
++ (UIImage*) getMemberGravatar:(SDECodeProjectMember*) member
 {
-    NSManagedObject* moMember = [self getMemberAsManagedObject:memberId];
-    SDECodeProjectMember* member = NULL;
-    if(moMember != NULL)
-    {
-        member = [[SDECodeProjectMember alloc] initWithManagedObject:moMember];
-    }
+    NSString* imagePath = [self getMemberGravatarPath:member];
+
+    UIImage *gravatar = [UIImage imageWithContentsOfFile:imagePath];
+    member.Gravatar = gravatar;
     
-    return member;
+    return gravatar;
 }
+
+//- (SDECodeProjectMember*) getMember:(int)memberId
+//{
+//    NSManagedObject* moMember = [self getMemberAsManagedObject:memberId];
+//    SDECodeProjectMember* member = NULL;
+//    if(moMember != NULL)
+//    {
+//        member = [[SDECodeProjectMember alloc] initWithManagedObject:moMember];
+//    }
+//
+//    return member;
+//}
 
 - (void) saveMember:(SDECodeProjectMember*) member
 {
@@ -92,6 +102,34 @@
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
     
+    if(member.Gravatar != NULL) {
+        
+        NSData *imageData = UIImagePNGRepresentation(member.Gravatar);
+       
+        NSString* imagePath = [SDECodeProjectMemberStore getMemberGravatarPath:member];
+        
+        NSLog((@"pre writing to file"));
+        if (![imageData writeToFile:imagePath atomically:NO])
+        {
+            NSLog((@"Failed to cache image data to disk"));
+        }
+        else
+        {
+            NSLog((@"the cachedImagedPath is %@",imagePath)); 
+        }
+
+    }
+    
+}
+
++ (NSString*) getMemberGravatarPath:(SDECodeProjectMember*) member
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",member.MemberId]];
+
+    return imagePath;
 }
 
 - (void) fillManagedObject:(NSManagedObject*)mo fromMember:(SDECodeProjectMember*) member
