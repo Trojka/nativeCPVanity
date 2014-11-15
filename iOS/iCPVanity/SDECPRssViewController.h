@@ -21,15 +21,15 @@
 
 - (void) loadRSS;
 
-- (void) feedLoaded;
+//- (void) feedLoaded;
 
-- (void) selectedFeed:(SDECodeProjectFeed*) feed;
+//- (void) selectedFeed:(SDECodeProjectFeed*) feed;
 
 - (NSString*) entryCellIdentifier;
 
 @property (nonatomic) SDECodeProjectFeed* Feed;
 
-@property (nonatomic) NSArray* Entries;
+@property (nonatomic) NSMutableArray* Entries;
 
 @property (strong, nonatomic) IBOutlet UITableView *EntriesView;
 

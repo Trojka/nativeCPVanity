@@ -19,10 +19,10 @@
 
 - (id) initWithContentsOfURL: (NSURL*) feedUrl;
 
-- (void) loadRSS;
+- (void) loadRssIn:(NSMutableArray*)items delegate:(id <SDERSSFeedDelegate>)delegate;
 
-@property (nonatomic, readwrite) id<SDERSSFeedDelegate> delegate;
+//@property (nonatomic, readwrite) id<SDERSSFeedDelegate> delegate;
 
-@property (nonatomic, readwrite) NSArray* Items;
+//@property (nonatomic, readwrite) NSArray* Items;
 
 @end

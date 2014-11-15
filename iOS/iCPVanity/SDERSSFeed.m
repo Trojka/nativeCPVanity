@@ -14,13 +14,16 @@
 {
     NSURL* url;
     
+    NSMutableData *rssData;
+    NSURLConnection *rssConnection;
+    
     NSXMLParser *parser;
     
     SDERSSItem* item;
     
     NSString* element;
     
-    NSMutableArray* result;
+    //NSMutableArray* result;
     
     NSMutableString* title;
     NSMutableString* description;
@@ -33,6 +36,10 @@
 
 @implementation SDERSSFeed
 
+NSMutableArray* itemsToFill;
+
+id<SDERSSFeedDelegate> progressDelegate;
+
 - (id) initWithContentsOfURL: (NSURL*) feedUrl
 {
     self = [super init];
@@ -43,13 +50,33 @@
 }
 
 
-- (void) loadRSS
+- (void) loadRssIn:(NSMutableArray*)items delegate:(id <SDERSSFeedDelegate>)delegate
 {
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    itemsToFill = items;
+    progressDelegate = delegate;
+    
+    rssData = [NSMutableData new];
+    rssConnection =[NSURLConnection connectionWithRequest:
+                            [NSURLRequest requestWithURL:url]
+                            delegate:self];
+    
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [rssData appendData:data];
+}
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    parser = [[NSXMLParser alloc] initWithData:rssData];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
-    [parser parse];}
+    [parser parse];
 
+}
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
@@ -87,11 +114,11 @@
         item.Author = author;
         item.Date = pubDate;
         
-        if(result == nil)
-        {
-            result = [[NSMutableArray alloc] init];
-        }
-        [result addObject:item];
+        //if(result == nil)
+        //{
+        //    result = [[NSMutableArray alloc] init];
+        //}
+        [itemsToFill addObject:item];
         
     }
     else if([elementName isEqualToString:@"title"] && [element isEqualToString:@"title"])
@@ -143,10 +170,10 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    self.Items = [[NSArray alloc] initWithArray:result];
+    //self.Items = [[NSArray alloc] initWithArray:result];
     
-    if(self.delegate != NULL)
-        [self.delegate feedLoaded];
+    if(progressDelegate != NULL)
+        [progressDelegate feedLoaded];
 }
 
 @end

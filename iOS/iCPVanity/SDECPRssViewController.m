@@ -16,9 +16,9 @@
 
 @interface SDECPRssViewController ()
 {
-    SDERSSFeed *rssFeed;
+    //SDERSSFeed *rssFeed;
     
-    //UIActivityIndicatorView *activityView;
+    UIActivityIndicatorView *activityView;
 }
 
 @end
@@ -28,6 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake (120.0, 185.0, 80, 80)];
+    activityView.color = [UIColor darkGrayColor];
+    
+    [self.view addSubview:activityView];
     
     self.EntriesView.delegate = self;
     
@@ -45,18 +50,20 @@
     NSLog(@"%@", self.Feed.Url);
     NSURL* rssUrl = [[NSURL alloc] initWithString:self.Feed.Url];
     
-    rssFeed = [[SDERSSFeed alloc] initWithContentsOfURL:rssUrl];
-    rssFeed.delegate = self;
-    [rssFeed loadRSS];
+    self.Entries = [[NSMutableArray alloc] init];
     
-    //[activityView startAnimating];
+    SDERSSFeed *rssFeed = [[SDERSSFeed alloc] initWithContentsOfURL:rssUrl];
+    //rssFeed.delegate = self;
+    [rssFeed loadRssIn:self.Entries delegate:self];
+    
+    [activityView startAnimating];
 }
 
 - (void) feedLoaded
 {
-    //[activityView stopAnimating];
+    [activityView stopAnimating];
     
-	self.Entries = rssFeed.Items;
+	//self.Entries = rssFeed.Items;
     self.EntriesView.dataSource = self;
     
     [self.EntriesView reloadData];
