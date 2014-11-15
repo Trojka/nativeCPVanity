@@ -7,6 +7,7 @@
 //
 
 #import "SDEAppDelegate.h"
+#import "SDECodeProjectWeb.h"
 
 @implementation SDEAppDelegate
 
@@ -19,8 +20,94 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
     // use Bob as header for the Navigationbar
+    
+    SDECodeProjectWeb* cpWeb = [[SDECodeProjectWeb alloc]init];
+    UIImage* bob = NULL;
+    [cpWeb fillLogo:&bob delegate:NULL];
+    
+    if(bob != NULL)
+    {
+        static int deviceWidth = 320;
+        static int navigationHeight = 44;
+        static int statusHeight = 20;
+        static int headerHeight= 64;
+        
+        float scale = bob.size.height / navigationHeight;
+        int scaledDeviceWidth = deviceWidth * scale;
+        int scaledNavigationHeight = navigationHeight * scale;
+        int scaledStatusHeight = statusHeight * scale;
+        UIGraphicsBeginImageContext(CGSizeMake(scaledDeviceWidth, scaledStatusHeight+scaledNavigationHeight));
+        
+        UIColor* color = NULL;
+        UIColor* fillColor = NULL;
+        CGFloat red, green, blue, alpha;
+        // find upper border
+        int upperBorderHeight = 0;
+        color = [SDEAppDelegate getRGBAsFromImage:bob atX:0 andY:upperBorderHeight];
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        while ((red == 1.0 && green == 1.0 && blue == 1.0)
+               && (upperBorderHeight < bob.size.height))
+        {
+            upperBorderHeight++;
+            color = [SDEAppDelegate getRGBAsFromImage:bob atX:0 andY:upperBorderHeight];
+            [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        }
+        fillColor = color;
+        
+        // find lower border
+        int lowerBorderHeight = bob.size.height - 1;
+        color = [SDEAppDelegate getRGBAsFromImage:bob atX:0 andY:lowerBorderHeight];
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        while ((red == 1.0 && green == 1.0 && blue == 1.0)
+               && (lowerBorderHeight >= 0))
+        {
+            lowerBorderHeight--;
+            color = [SDEAppDelegate getRGBAsFromImage:bob atX:0 andY:lowerBorderHeight];
+            [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        }
+        
+        [fillColor set];
+        CGRect rectBackground = CGRectMake(0,
+                                           scaledStatusHeight + upperBorderHeight,
+                                           scaledDeviceWidth,
+                                           lowerBorderHeight - upperBorderHeight);
+        UIRectFill(rectBackground);
+
+        int offsetBob = (scaledDeviceWidth - bob.size.width)/2;
+        CGRect rectBob = CGRectMake(offsetBob, scaledStatusHeight, bob.size.width, bob.size.height);
+    
+        [bob drawInRect:rectBob];
+        UIImage *modifiedBob = UIGraphicsGetImageFromCurrentImageContext();
+        
+        if(modifiedBob != NULL)
+        {
+            bob = modifiedBob;
+        }
+    
+        UIGraphicsEndImageContext();
+        
+        UIGraphicsBeginImageContext(CGSizeMake(deviceWidth, headerHeight));
+        
+        [bob drawInRect:CGRectMake(0, 0, deviceWidth, headerHeight)];
+        UIImage *headerBob = UIGraphicsGetImageFromCurrentImageContext();
+        
+        if(headerBob != NULL)
+        {
+            bob = headerBob;
+        }
+        
+        UIGraphicsEndImageContext();
+
+    }
+    else
+    {
+        bob = [UIImage imageNamed:@"cplogo.png"];
+    }
+    
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];    
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"cplogo.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:bob
+                                       forBarMetrics:UIBarMetricsDefault];
     
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
@@ -31,7 +118,51 @@
     
     return YES;
 }
-							
+
+// http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
++ (UIColor*)getRGBAsFromImage:(UIImage*)image atX:(int)x andY:(int)y //count:(int)count
+{
+    //NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
+    
+    // First get the image into your data buffer
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+//    for (int i = 0 ; i < count ; ++i)
+//    {
+        CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
+        CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
+        CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
+        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
+//        byteIndex += bytesPerPixel;
+        
+        UIColor *acolor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    
+        //NSLog(@"getRGBAsFromImage[x:%d][y:%d] Red:%1.2f, Green:%1.2f, Blue:%1.2f", x, y, red, green, blue);
+    
+        //[result addObject:acolor];
+//    }
+    
+    free(rawData);
+    
+    return acolor;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

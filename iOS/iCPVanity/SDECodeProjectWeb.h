@@ -19,6 +19,8 @@
 
 - (void) codeprojectMemberArticleAvailable;
 
+- (void) codeprojectLogoAvailable;
+
 @end
 
 @interface SDECodeProjectWeb : NSObject
@@ -26,5 +28,7 @@
 -(void)fillMember:(SDECodeProjectMember*)member delegate:(id <SDECodeProjectWebDelegate>)delegate;
 
 -(void)fillMemberArticles:(SDECodeProjectMemberArticles*)memberArticles delegate:(id <SDECodeProjectWebDelegate>)delegate;
+
+-(void)fillLogo:(UIImage**)logo delegate:(id <SDECodeProjectWebDelegate>)delegate;
 
 @end

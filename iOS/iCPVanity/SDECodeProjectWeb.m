@@ -17,6 +17,9 @@
     
     NSMutableData *profilePageData;
     NSURLConnection *profilePageConnection;
+    
+    NSData *homePageData;
+    NSURLConnection *homePageConnection;
 }
 
 @property (atomic, readwrite) Boolean ProfilePageLoaded;
@@ -30,6 +33,7 @@
 
 SDECodeProjectMember* memberToFill;
 SDECodeProjectMemberArticles* memberArticlesToFill;
+UIImage* logoToFill;
 
 id<SDECodeProjectWebDelegate> progressDelegate;
 
@@ -70,6 +74,33 @@ id<SDECodeProjectWebDelegate> progressDelegate;
                              [NSURL URLWithString:memberArticlesPageUrl]]
                                                          delegate:self];
     
+}
+
+
+-(void)fillLogo:(UIImage**)logo delegate:(id<SDECodeProjectWebDelegate>)delegate
+{
+    //progressDelegate = delegate;
+    //logoToFill = logo;
+    
+    NSString* homePageUrl = [SDECodeProjectUrlScheme baseUrl];
+    
+    //homePageData = [NSMutableData new];
+    //homePageConnection =[NSURLConnection connectionWithRequest:
+    //                     [NSURLRequest requestWithURL:
+    //                      [NSURL URLWithString:homePageUrl]]
+    //                                                  delegate:self];
+    
+    NSURLResponse* response = nil;
+    NSError* error = nil;
+    homePageData = [NSURLConnection
+                    sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:homePageUrl]]
+                        returningResponse:&response
+                        error:&error];
+    
+    NSString *homePage = [[NSString alloc]initWithData:homePageData encoding:NSASCIIStringEncoding];
+
+    [self fillLogo:logo fromPage:homePage];
+
 }
 
 
@@ -244,6 +275,24 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 }
 
 
+-(void)fillLogo:(UIImage**)logo fromPage:(NSString*) page
+{
+    // <img id="ctl00_MC_Prof_MemberImage" class="padded-top" src="/script/Membership/Images/member_unknown.gif"
+    // <img id="ctl\d*_MC_Prof_MemberImage[\s\S]*?src="([\s\S]*?)"
+    
+    // <<img id="ctl00_Logo" tabindex="1" title="CodeProject" src="//dj9okeyxktdvd.cloudfront.net/App_Themes/CodeProject/Img/Birthday/logo250x135.gif" alt="Home" style="height:135px;width:250px;border-width:0px;">
+    // <img id="ctl\d*_Logo[\s\S]*?src="([\s\S]*?)"
+    NSString* imageUrlMatchingPattern = @"<img id=\"ctl\\d*_Logo[\\s\\S]*?src=\"([\\s\\S]*?)\"";
+    NSString* imageUrl = [self captureForPattern: imageUrlMatchingPattern inText:page];
+    NSString* imageFormattedUrl = [NSString stringWithFormat:@"http:%@", imageUrl];
+
+    NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageFormattedUrl]];
+    UIImage* image = [[UIImage alloc] initWithData:imageData];
+
+    *logo = image;
+}
+
+
 - (NSArray*)matchesForPattern:(NSString*)pattern inText:(NSString*)text {
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression
@@ -295,6 +344,9 @@ id<SDECodeProjectWebDelegate> progressDelegate;
     
     if(connection == articlePageConnection)
         [articlePageData appendData:data];
+    
+    //if(connection == homePageConnection)
+    //    [homePageData appendData:data];
 }
 
 
@@ -326,6 +378,18 @@ id<SDECodeProjectWebDelegate> progressDelegate;
         if(progressDelegate != NULL)
             [progressDelegate codeprojectMemberArticleAvailable];
     }
+    
+    //if(connection == homePageConnection)
+    //{
+    //    NSString *homePage = [[NSString alloc]initWithData:homePageData encoding:NSASCIIStringEncoding];
+    //
+    //    if(logoToFill != NULL)
+    //        [self fillLogo:logoToFill fromPage:homePage];
+    //
+    //    if(progressDelegate != NULL)
+    //        [progressDelegate codeprojectLogoAvailable];
+    //}
+
     
     if(self.ProfilePageLoaded && self.ArticlePageLoaded)
     {
