@@ -78,6 +78,8 @@ SDECodeProjectMemberArticles* memberArticles;
         SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.ArticleView indexPathForSelectedRow];
+        
+        pageViewController.Url = ((SDECodeProjectArticle*)[memberArticles.ArticleList objectAtIndex:indexPath.row]).Link;
     }
 }
 
