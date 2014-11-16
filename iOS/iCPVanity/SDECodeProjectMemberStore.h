@@ -14,7 +14,9 @@
     NSManagedObjectContext* managedObjectContext;
 }
 
-- (id) initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (id) init;
+
+//- (id) initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (NSArray*) getAllMembers;
 

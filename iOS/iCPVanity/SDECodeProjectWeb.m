@@ -275,7 +275,7 @@ id<SDECodeProjectWebDelegate> progressDelegate;
 }
 
 
--(void)fillLogo:(UIImage**)logo fromPage:(NSString*) page
+- (void)fillLogo:(UIImage**)logo fromPage:(NSString*) page
 {
     // <img id="ctl00_MC_Prof_MemberImage" class="padded-top" src="/script/Membership/Images/member_unknown.gif"
     // <img id="ctl\d*_MC_Prof_MemberImage[\s\S]*?src="([\s\S]*?)"

@@ -19,7 +19,7 @@
 
 - (void) codeprojectMemberArticleAvailable;
 
-- (void) codeprojectLogoAvailable;
+//- (void) codeprojectLogoAvailable;
 
 @end
 

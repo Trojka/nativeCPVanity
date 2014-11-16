@@ -111,11 +111,11 @@
         NSLog((@"pre writing to file"));
         if (![imageData writeToFile:imagePath atomically:NO])
         {
-            NSLog((@"Failed to cache image data to disk"));
+            NSLog(@"Failed to cache image data to disk");
         }
         else
         {
-            NSLog((@"the cachedImagedPath is %@",imagePath)); 
+            NSLog(@"the cachedImagedPath is %@",imagePath);
         }
 
     }

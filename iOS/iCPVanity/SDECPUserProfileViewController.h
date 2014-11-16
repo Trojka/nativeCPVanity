@@ -15,7 +15,7 @@
 {
 }
 
-- (IBAction) fillWithMember;
+//- (IBAction) fillWithMember;
 
 - (IBAction) saveMember;
 
