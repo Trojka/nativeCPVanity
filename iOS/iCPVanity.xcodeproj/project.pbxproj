@@ -519,6 +519,7 @@
 				GCC_PREFIX_HEADER = "iCPVanity/iCPVanity-Prefix.pch";
 				INFOPLIST_FILE = "iCPVanity/iCPVanity-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -532,6 +533,7 @@
 				GCC_PREFIX_HEADER = "iCPVanity/iCPVanity-Prefix.pch";
 				INFOPLIST_FILE = "iCPVanity/iCPVanity-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
