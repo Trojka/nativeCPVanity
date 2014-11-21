@@ -35,13 +35,13 @@
         
         categoryViewController.categorySelectionDelegate = self;
     }
-    else if([segue.identifier isEqualToString:@"RSSArticle"]) {
-        SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.EntriesView indexPathForSelectedRow];
-        
-        pageViewController.Url = ((SDERSSItem*)[self.Entries objectAtIndex:indexPath.row]).Link;
-    }
+    //else if([segue.identifier isEqualToString:@"RSSArticle"]) {
+    //    SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
+    //
+    //    NSIndexPath *indexPath = [self.EntriesView indexPathForSelectedRow];
+    //
+    //    pageViewController.Url = ((SDERSSItem*)[self.Entries objectAtIndex:indexPath.row]).Link;
+    //}
 }
 
 @end

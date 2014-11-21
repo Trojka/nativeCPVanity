@@ -153,6 +153,13 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* rssLink = ((SDERSSItem*)[self.Entries objectAtIndex:indexPath.row]).Link;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:rssLink]];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 -(CGFloat)roundValue:(CGFloat) value ToNearestMultipleOf:(CGFloat) multiple
 {
     int roundedMultiple = (int)round(value/multiple);

@@ -255,35 +255,6 @@
             </objects>
             <point key="canvasLocation" x="1689" y="-389"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="bSy-nG-Wio">
-            <objects>
-                <viewController id="i34-jB-Zya" customClass="SDECPPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lj5-cu-ocs"/>
-                        <viewControllerLayoutGuide type="bottom" id="NGZ-zA-4RT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HEW-FM-26I">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q60-od-YFe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qyp-HM-lbh"/>
-                    <connections>
-                        <outlet property="webView" destination="Q60-od-YFe" id="4Fq-TM-Rad"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="atw-2u-4rm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2763" y="-1051"/>
-        </scene>
         <!--User Articles View Controller-->
         <scene sceneID="m3G-S5-WwN">
             <objects>
@@ -306,7 +277,7 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-6J-vwb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-6J-vwb">
                                 <rect key="frame" x="0.0" y="125" width="320" height="394"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -348,17 +319,18 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="i34-jB-Zya" kind="push" identifier="MemberArticleSegue" id="ovZ-Fn-853"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7aY-8a-FEY" firstAttribute="top" secondItem="Ey6-6J-vwb" secondAttribute="bottom" id="CY2-hI-5j9"/>
+                            <constraint firstItem="Ey6-6J-vwb" firstAttribute="leading" secondItem="gMK-EZ-7O8" secondAttribute="leading" id="NiP-mu-80y"/>
+                            <constraint firstAttribute="trailing" secondItem="Ey6-6J-vwb" secondAttribute="trailing" id="SP1-oQ-CEW"/>
                             <constraint firstItem="hdZ-mo-EBW" firstAttribute="top" secondItem="zLW-ot-kCs" secondAttribute="bottom" constant="4" id="URZ-wj-pcj"/>
                             <constraint firstAttribute="trailing" secondItem="hdZ-mo-EBW" secondAttribute="trailing" id="XXU-R4-aTO"/>
+                            <constraint firstItem="Ey6-6J-vwb" firstAttribute="top" secondItem="hdZ-mo-EBW" secondAttribute="bottom" constant="8" id="fZi-pU-Ybw"/>
                             <constraint firstItem="hdZ-mo-EBW" firstAttribute="leading" secondItem="gMK-EZ-7O8" secondAttribute="leading" id="viO-rW-mcG"/>
                         </constraints>
                     </view>
@@ -484,7 +456,7 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFB-hP-UnP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cFB-hP-UnP">
                                 <rect key="frame" x="0.0" y="125" width="320" height="393"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -552,9 +524,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="6ca-Ga-AzG" secondAttribute="trailing" id="yiV-PS-tVU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="qVW-hz-2wQ" kind="push" identifier="RSSArticle" id="uzT-mh-Khz"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -562,8 +531,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QOx-zS-shp" firstAttribute="top" secondItem="QPD-Rj-df7" secondAttribute="bottom" constant="4" id="B0f-y2-ymS"/>
+                            <constraint firstItem="cFB-hP-UnP" firstAttribute="top" secondItem="QOx-zS-shp" secondAttribute="bottom" constant="8" id="KiS-ql-dQq"/>
                             <constraint firstAttribute="trailing" secondItem="QOx-zS-shp" secondAttribute="trailing" id="UN0-nd-2FU"/>
+                            <constraint firstItem="fVP-a0-OKV" firstAttribute="top" secondItem="cFB-hP-UnP" secondAttribute="bottom" constant="1" id="jhi-oe-asF"/>
+                            <constraint firstItem="cFB-hP-UnP" firstAttribute="leading" secondItem="t3O-GQ-Wnv" secondAttribute="leading" id="s5N-tj-ew6"/>
                             <constraint firstItem="QOx-zS-shp" firstAttribute="leading" secondItem="t3O-GQ-Wnv" secondAttribute="leading" id="vK9-TY-NXI"/>
+                            <constraint firstAttribute="trailing" secondItem="cFB-hP-UnP" secondAttribute="trailing" id="zNV-qY-gB9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5ts-NZ-b2u">
@@ -581,35 +554,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIs-bl-dRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1203" y="935"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="RwY-v8-18O">
-            <objects>
-                <viewController id="qVW-hz-2wQ" customClass="SDECPPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NUP-Xd-Lcd"/>
-                        <viewControllerLayoutGuide type="bottom" id="PQg-Zl-u31"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="b7H-xN-xLf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Eg-QM-cJV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="f6r-iq-3Ag"/>
-                    <connections>
-                        <outlet property="webView" destination="7Eg-QM-cJV" id="zXD-98-jyo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbv-bd-e4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1773" y="274"/>
         </scene>
         <!--Article Category View Controller-->
         <scene sceneID="nom-Qc-4Os">
@@ -753,9 +697,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="b5d-xH-olS" secondAttribute="trailing" id="xEz-Df-xgu"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Axa-fH-18l" kind="push" identifier="RSSForum" id="09R-2d-bBe"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -792,35 +733,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTh-ju-Idq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1203" y="2456"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="1uP-Ju-nXa">
-            <objects>
-                <viewController id="Axa-fH-18l" customClass="SDECPPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yjO-V4-Dep"/>
-                        <viewControllerLayoutGuide type="bottom" id="DDq-Fo-K9h"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ukx-s1-DHh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxO-EM-o6s">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="s32-Fl-JhB"/>
-                    <connections>
-                        <outlet property="webView" destination="fxO-EM-o6s" id="8VN-Xd-we7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vCc-Gd-ANe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1773" y="1770"/>
         </scene>
         <!--Forum Category View Controller-->
         <scene sceneID="WDv-Xt-LfZ">

@@ -31,6 +31,8 @@ SDECodeProjectMemberArticles* memberArticles;
     
     [self.view addSubview:activityView];
     
+    self.ArticleView.delegate = self;
+    
     [self fillWithArticlesOfMemberWithId:self.CodeprojectMember.MemberId];
 
 }
@@ -74,13 +76,13 @@ SDECodeProjectMemberArticles* memberArticles;
         
         memberReputationViewController.CodeprojectMember = self.CodeprojectMember;
     }
-    else if([segue.identifier isEqualToString:@"MemberArticleSegue"]) {
-        SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
+    //else if([segue.identifier isEqualToString:@"MemberArticleSegue"]) {
+    //    SDECPPageViewController *pageViewController = (SDECPPageViewController*)segue.destinationViewController;
         
-        NSIndexPath *indexPath = [self.ArticleView indexPathForSelectedRow];
-        
-        pageViewController.Url = ((SDECodeProjectArticle*)[memberArticles.ArticleList objectAtIndex:indexPath.row]).Link;
-    }
+    //    NSIndexPath *indexPath = [self.ArticleView indexPathForSelectedRow];
+    //
+    //    pageViewController.Url = ((SDECodeProjectArticle*)[memberArticles.ArticleList objectAtIndex:indexPath.row]).Link;
+    //}
 }
 
 
@@ -118,6 +120,15 @@ SDECodeProjectMemberArticles* memberArticles;
     ((UILabel*)[cell viewWithTag:103]).text = [NSString stringWithFormat:@"(%@ votes)", article.Votes];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SDECodeProjectArticle *article = [memberArticles.ArticleList objectAtIndex:indexPath.row];
+    
+    NSString* articleLink = article.Link;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:articleLink]];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
