@@ -26,6 +26,17 @@
 
 @implementation SDECPUserListViewController
 
+
+- (IBAction) refreshMembers
+{
+    [self refreshMember:0];
+}
+
+- (void) refreshMember:(int)memberIndex
+{
+    
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

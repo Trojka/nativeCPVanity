@@ -98,7 +98,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="SQL-dm-rJo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4hf-Bl-LN2"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="refresh" id="4hf-Bl-LN2">
+                            <connections>
+                                <action selector="refreshMembers" destination="CZg-bP-t9D" id="UO1-xc-x0f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="MemberListTableView" destination="DKS-LR-pAi" id="WNe-ud-gwa"/>

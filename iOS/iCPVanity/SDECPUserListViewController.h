@@ -10,6 +10,8 @@
 
 @interface SDECPUserListViewController : UITableViewController
 
+- (IBAction) refreshMembers;
+
 @property (strong, nonatomic) IBOutlet UITableView *MemberListTableView;
 
 @end
