@@ -102,7 +102,7 @@
     }
 }
 
-- (GLfloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.searchDisplayController.searchResultsTableView && indexPath.row == 0) {
         return 35;
