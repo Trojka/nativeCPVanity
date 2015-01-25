@@ -17,6 +17,7 @@
     NSArray* searchResults;
     
     NSString* filterString;
+    BOOL filterIsNumeric;
 }
 
 //@property (strong) NSMutableArray* memberList;
@@ -29,7 +30,8 @@
 
 - (IBAction) refreshMembers
 {
-    [self refreshMember:0];
+    [self.tableView reloadData];
+    //[self refreshMember:0];
 }
 
 - (void) refreshMember:(int)memberIndex
@@ -88,9 +90,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         NSInteger extraEntry = 0;
         
-        NSScanner *scanner = [NSScanner scannerWithString:filterString];
-        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
-        if(isNumeric) {
+        if(filterIsNumeric) {
             // add one for the add member entry
             extraEntry = 1;
         }
@@ -104,7 +104,9 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView && indexPath.row == 0) {
+    if (tableView == self.searchDisplayController.searchResultsTableView
+        && filterIsNumeric
+        && indexPath.row == 0) {
         return 35;
     }
     
@@ -120,10 +122,8 @@
     
     SDECodeProjectMember* member = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        NSScanner *scanner = [NSScanner scannerWithString:filterString];
-        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
         
-        if(indexPath.row == 0 && isNumeric) {
+        if(indexPath.row == 0 && filterIsNumeric) {
             static NSInteger textTag = 200;
             
             cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:AddMemberCellIdentifier];
@@ -133,7 +133,7 @@
             return cell;
         }
         else {
-            member = [searchResults objectAtIndex:(indexPath.row - (isNumeric?1:0))];
+            member = [searchResults objectAtIndex:(indexPath.row - (filterIsNumeric?1:0))];
             
             cell = [self.MemberListTableView dequeueReusableCellWithIdentifier:MemberCellIdentifier];
         }
@@ -214,8 +214,11 @@
     filterString = searchString;
     int filterId = [filterString integerValue];
     
+    NSScanner *scanner = [NSScanner scannerWithString:filterString];
+    filterIsNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
+    
     if(self.memberList.count != 0) {
-        NSArray* filteredMemberList = [self.memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"MemberName beginswith %@ OR MemberId == %i", filterString, filterId]];
+        NSArray* filteredMemberList = [self.memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"MemberName beginswith[c] %@ OR MemberId == %i", filterString, filterId]];
         
         searchResults = [[NSArray alloc] initWithArray:filteredMemberList];
         

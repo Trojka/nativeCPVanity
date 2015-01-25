@@ -100,7 +100,7 @@
                     <navigationItem key="navigationItem" id="SQL-dm-rJo">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="refresh" id="4hf-Bl-LN2">
                             <connections>
-                                <action selector="refreshMembers" destination="CZg-bP-t9D" id="UO1-xc-x0f"/>
+                                <action selector="refreshMembers" destination="CZg-bP-t9D" id="6Gg-bW-63O"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
