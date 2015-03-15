@@ -32,9 +32,6 @@
 		0BC0EC131893C8D6004C731E /* SDEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC121893C8D6004C731E /* SDEAppDelegate.m */; };
 		0BC0EC161893C8D6004C731E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC0EC141893C8D6004C731E /* Main.storyboard */; };
 		0BC0EC1C1893C8D6004C731E /* SDECPArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC1B1893C8D6004C731E /* SDECPArticleViewController.m */; };
-		0BC0EC251893C8D6004C731E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC0EC241893C8D6004C731E /* XCTest.framework */; };
-		0BC0EC261893C8D6004C731E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC0EC021893C8D6004C731E /* Foundation.framework */; };
-		0BC0EC271893C8D6004C731E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC0EC061893C8D6004C731E /* UIKit.framework */; };
 		0BC0EC3C1893CD39004C731E /* SDECPForumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC3B1893CD39004C731E /* SDECPForumsViewController.m */; };
 		0BC0EC4318941EDD004C731E /* SDECodeProjectUrlScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC4218941EDD004C731E /* SDECodeProjectUrlScheme.m */; };
 		0BC0EC46189421D6004C731E /* SDECodeProjectMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0EC45189421D6004C731E /* SDECodeProjectMember.m */; };
@@ -45,16 +42,6 @@
 		0BEDC13D19FAE05100DCCBD2 /* SDECPUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEDC13C19FAE05100DCCBD2 /* SDECPUserListViewController.m */; };
 		0BEDC14319FAEBC300DCCBD2 /* cplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEDC14219FAEBC300DCCBD2 /* cplogo.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0BC0EC281893C8D6004C731E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0BC0EBF71893C8D6004C731E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BC0EBFE1893C8D6004C731E;
-			remoteInfo = iCPVanity;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0B25A5D61A0D54C300EF543A /* SDECodeProjectMemberStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SDECodeProjectMemberStore.xcdatamodel; sourceTree = "<group>"; };
@@ -98,7 +85,6 @@
 		0BC0EC151893C8D6004C731E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BC0EC1A1893C8D6004C731E /* SDECPArticleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDECPArticleViewController.h; sourceTree = "<group>"; };
 		0BC0EC1B1893C8D6004C731E /* SDECPArticleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDECPArticleViewController.m; sourceTree = "<group>"; };
-		0BC0EC231893C8D6004C731E /* iCPVanityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCPVanityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC0EC241893C8D6004C731E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0BC0EC3A1893CD39004C731E /* SDECPForumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDECPForumsViewController.h; sourceTree = "<group>"; };
 		0BC0EC3B1893CD39004C731E /* SDECPForumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDECPForumsViewController.m; sourceTree = "<group>"; };
@@ -131,16 +117,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BC0EC201893C8D6004C731E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BC0EC251893C8D6004C731E /* XCTest.framework in Frameworks */,
-				0BC0EC271893C8D6004C731E /* UIKit.framework in Frameworks */,
-				0BC0EC261893C8D6004C731E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -168,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				0BC0EBFF1893C8D6004C731E /* iCPVanity.app */,
-				0BC0EC231893C8D6004C731E /* iCPVanityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,24 +269,6 @@
 			productReference = 0BC0EBFF1893C8D6004C731E /* iCPVanity.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0BC0EC221893C8D6004C731E /* iCPVanityTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0BC0EC371893C8D6004C731E /* Build configuration list for PBXNativeTarget "iCPVanityTests" */;
-			buildPhases = (
-				0BC0EC1F1893C8D6004C731E /* Sources */,
-				0BC0EC201893C8D6004C731E /* Frameworks */,
-				0BC0EC211893C8D6004C731E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0BC0EC291893C8D6004C731E /* PBXTargetDependency */,
-			);
-			name = iCPVanityTests;
-			productName = iCPVanityTests;
-			productReference = 0BC0EC231893C8D6004C731E /* iCPVanityTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -321,11 +278,6 @@
 				CLASSPREFIX = SDE;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "serge desmedt";
-				TargetAttributes = {
-					0BC0EC221893C8D6004C731E = {
-						TestTargetID = 0BC0EBFE1893C8D6004C731E;
-					};
-				};
 			};
 			buildConfigurationList = 0BC0EBFA1893C8D6004C731E /* Build configuration list for PBXProject "iCPVanity" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -341,7 +293,6 @@
 			projectRoot = "";
 			targets = (
 				0BC0EBFE1893C8D6004C731E /* iCPVanity */,
-				0BC0EC221893C8D6004C731E /* iCPVanityTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,13 +309,6 @@
 				0BB7CF2C18D237A8007131B0 /* memberalpha.png in Resources */,
 				0BC0EC0D1893C8D6004C731E /* InfoPlist.strings in Resources */,
 				0BC0EC161893C8D6004C731E /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0BC0EC211893C8D6004C731E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,22 +345,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BC0EC1F1893C8D6004C731E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0BC0EC291893C8D6004C731E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0BC0EBFE1893C8D6004C731E /* iCPVanity */;
-			targetProxy = 0BC0EC281893C8D6004C731E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0BC0EC0B1893C8D6004C731E /* InfoPlist.strings */ = {
@@ -538,48 +467,6 @@
 			};
 			name = Release;
 		};
-		0BC0EC381893C8D6004C731E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iCPVanity.app/iCPVanity";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iCPVanity/iCPVanity-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "iCPVanityTests/iCPVanityTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		0BC0EC391893C8D6004C731E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iCPVanity.app/iCPVanity";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iCPVanity/iCPVanity-Prefix.pch";
-				INFOPLIST_FILE = "iCPVanityTests/iCPVanityTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -597,15 +484,6 @@
 			buildConfigurations = (
 				0BC0EC351893C8D6004C731E /* Debug */,
 				0BC0EC361893C8D6004C731E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0BC0EC371893C8D6004C731E /* Build configuration list for PBXNativeTarget "iCPVanityTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0BC0EC381893C8D6004C731E /* Debug */,
-				0BC0EC391893C8D6004C731E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
